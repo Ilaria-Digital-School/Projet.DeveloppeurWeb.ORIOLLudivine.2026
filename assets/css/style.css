@@ -1,0 +1,374 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EDE0CC;
+    color: #333;
+}
+
+/* ================================
+           Index.html
+   ================================ */
+
+.hero {
+    background-image: url('../images/hero-patissons.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    color: #31190c;
+    gap: 60px;
+
+}
+
+ h1 {
+    font-size: clamp(24px, 3.5vw, 40px);
+    margin-bottom: 150px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 200;
+    line-height: 1.25;
+}
+
+.hero p {
+
+    font-size: clamp(15px, 2vw, 20px);
+    margin-bottom: 80px;
+    font-family: 'Georgia', serif;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #C4593A;
+    color: white;
+    text-decoration: none;
+    font-size: clamp(14px, 1.8vw, 18px);
+    border-radius: 5px;
+}
+.hero-content {
+    
+   padding: 20px 10px;
+   letter-spacing: 3px;
+   line-height: 30px;
+   font-size: 20px;
+}
+
+.header, .footer    
+{
+    background-color: #EDE0CC;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(93, 55, 28, 0.15);
+}
+
+.header a, .footer a {
+    color:#4d230d;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
+}
+
+.header-nav {
+    display: flex;
+    gap: 60px;
+    font-size: clamp(14px, 1.8vw, 20px);
+}
+
+.intro {
+    padding: 80px 40px;
+    text-align: center;
+    /* background-color: #31190c; */
+    color:#31190c;
+    
+}
+
+.intro h2 {
+    font-size: clamp(28px, 4.5vw, 50px);
+    margin-bottom: 20px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 200;
+    line-height: 1.25;
+}
+
+.intro p {
+    font-size: clamp(16px, 2.5vw, 22px);
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Georgia', serif;
+}
+
+.categories {
+    padding: 80px 40px;
+    background-color: #55250c;
+    color: white;
+}
+
+.categories h2 {
+    font-size: clamp(20px, 2.8vw, 30px);
+    margin-bottom: 40px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+}
+
+.categories__liste {
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+   
+}
+
+.categories__lien {
+    color:#ea4b1f;
+    text-decoration: none;
+    font-size: clamp(14px, 1.8vw, 20px);
+    font-style: italic;
+    padding: 10px 20px;
+    border: 2px solid #C4593A;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+/* GRILLE DE RECETTES */
+
+#titre-resultats {
+    font-size: clamp(24px, 3.5vw, 40px);
+    margin-top: 60px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 200;
+    line-height: 1.25;
+}
+.container {
+  padding: 80px 40px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap : 40px;
+}
+
+.recette-card {
+  background-color: #FFFFFF;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.recette-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.recette-lien {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #C4593A;
+    color: white;
+    text-decoration: none;
+    font-size: clamp(13px, 1.5vw, 16px);
+    border-radius: 5px;
+    margin-top: 20px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+
+.recette-titre ,.recette-description {
+    padding: 10px 15px;
+    font-family: 'Georgia', serif;
+    color: #31190c;
+
+}
+/* ================================
+   Recettes.html
+   ================================ */
+
+.recettes-layout {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+}   
+
+.resultats h1 {
+    font-size: clamp(28px, 4.5vw, 50px);
+    margin-top: 60px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+  
+}
+
+/* La carte devient un contexte de positionnement */
+.recette-card {
+    position: relative;
+}
+
+/* Le lien s'étend sur toute la carte */
+.recette-lien::after {
+    content: "";
+    position: absolute;
+    inset: 0;        /* équivaut à top:0; right:0; bottom:0; left:0 */
+}
+
+
+/* ================================
+   FIL D'ARIANE
+   ================================ */
+
+nav[aria-label="Fil d'ariane"] {
+    padding: 15px 40px;
+    background-color: #FDFAF6;
+    border-bottom: 1px solid rgba(93, 55, 28, 0.1);
+}
+
+nav[aria-label="Fil d'ariane"] ol {
+    list-style: none;          /* Supprime les numéros */
+    display: flex;             /* Met les éléments en ligne */
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    font-size: clamp(12px, 1.2vw, 14px);
+}
+
+nav[aria-label="Fil d'ariane"] ol li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #31190c;
+}
+
+/* La flèche entre chaque élément */
+nav[aria-label="Fil d'ariane"] ol li + li::before {
+    content: "›";             /* Le séparateur */
+    color: #B07A4A;
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* Le lien Accueil */
+nav[aria-label="Fil d'ariane"] ol li a {
+    color: #C4593A;
+    text-decoration: none;
+}
+
+nav[aria-label="Fil d'ariane"] ol li a:hover {
+    text-decoration: underline;
+}
+
+/* La page active (Recettes) - pas de lien, juste du texte */
+nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
+    color: #31190c;
+    font-style: italic;
+}
+
+
+
+/* ================================
+   MEDIA QUERIES
+   ================================ */
+
+
+/* --- TABLETTE : max 1024px --- */
+@media (max-width: 1024px) {
+
+    /* La grille passe de 3 colonnes à 2 */
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Les catégories peuvent passer à la ligne */
+    .categories__liste {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    /* On réduit les paddings généreux */
+    .intro {
+        padding: 60px 30px;
+    }
+
+    .categories {
+        padding: 60px 30px;
+    }
+}
+
+
+/* --- MOBILE : max 768px --- */
+@media (max-width: 768px) {
+
+    /* Le header passe en colonne : logo au-dessus, nav en dessous */
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    /* Les liens de nav s'empilent verticalement */
+    .header-nav {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    /* Le hero s'adapte en hauteur automatique */
+    .hero {
+        height: auto;
+        padding: 60px 20px;
+        gap: 30px;
+    }
+
+    /* La grille passe à 1 seule colonne */
+    .container {
+        grid-template-columns: 1fr;
+        padding: 40px 20px;
+    }
+
+    /* Les catégories s'empilent en colonne */
+    .categories__liste {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* On réduit les marges trop grandes sur mobile */
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    .hero p {
+        margin-bottom: 30px;
+    }
+
+    .intro {
+        padding: 40px 20px;
+    }
+
+    .categories {
+        padding: 40px 20px;
+    }
+}

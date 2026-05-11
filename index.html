@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil Pâtissons</title>
+    <meta name="description"
+        content="Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !">
+
+    <!-- Polices Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
+        rel="stylesheet">
+    <!-- Lien bootstrap -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header class="header" role="banner">
+        <a href="index.html" aria-label="Retour à l'accueil">
+            <img class="logo" src="assets/images/logo_patissons_clair.svg" alt="Logo Pâtissons">
+        </a>
+        <nav class="header-nav" aria-label="navigation principale">
+            <a href="index.html" aria-current="page">Accueil</a>
+            <a href="templates/recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
+            <a href="templates/ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
+            <a href="templates/connexion.html" aria-label="Se connecter ou s'inscrire">Connexion</a>
+        </nav>
+    </header>
+
+    <main role="main">
+        <!-- Section hero -->
+        <section class="hero" aria-label="Présentation du site">
+            <div class="hero-content">
+                <h1>Bienvenue sur Pâtissons !</h1>
+                <p>Site collaboratif <br> L'art de la pâtisserie,<br><em>partagée.</em></p>
+
+            <a href="templates/recettes.html" class="hero-btn">Explorer les recettes</a>
+            </div>
+        </section>
+
+        <!-- Section introduction -->
+        <section class="intro" aria-label="Introduction au site">
+            <div class="intro-content">
+                <h2>
+                    La pâtisserie française,<br>
+                    une tradition vivante.
+                </h2>
+                <p>
+                    Pâtissons réunit passionnés et professionnels autour d'un même amour
+                    du beau geste. <br> Ici, les recettes se transmettent, se partagent,
+                    s'enrichissent. <br> Du croissant du dimanche matin à la pièce montée
+                    des grandes occasions.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section catégories -->
+        <section class="categories" aria-label="Recherche par catégories">
+            <h2>Recherche par catégories</h2>
+            <ul class="categories__liste">
+                <li><a href="#" class="categories__lien">Crèmes,
+                        curds et ganache</a></li>
+                <li><a href="#" class="categories__lien">Pâtes et
+                        biscuits</a></li>
+                <li><a href="#" class="categories__lien">Tartes et
+                        millefeuilles</a></li>
+                <li><a href="#" class="categories__lien">Entremets et
+                        gâteaux montés</a></li>
+                <li><a href="#" class="categories__lien">Pâtisseries
+                        individuelles</a></li>
+                <li><a href="#" class="categories__lien">Autres gourmandises</a>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- Toutes les recettes -->
+        <section aria-label="Toutes les recettes">
+            <h2 id="titre-resultats">Toutes les recettes</h2>
+        
+            <!-- Grille de recettes -->
+            <div class="container">
+                <article class="recette-card">
+                    <img src="assets/images/received_1547487432012481.jpg" alt="Tarte au citron meringuée" class="recette-image">
+                    <h3 class="recette-titre">Tarte au citron meringuée</h3>
+                    <p class="recette-description">Une tarte acidulée et sucrée, parfaite pour les amateurs de citron.</p>
+                    <a href="templates/recette_detail.html" class="recette-lien">Voir la recette</a>
+                </article>
+                <article class="recette-card">
+                    <img src="assets/images/IMG_20180223_155845.jpg" alt="Royal chocolat" class="recette-image">
+                    <h3 class="recette-titre">Royal chocolat</h3>
+                    <p class="recette-description">Un classique de la pâtisserie française, composé d'une mousse au chocolat et d'un croustillant praliné.</p>
+                    <a href="templates/recette_detail.html" class="recette-lien">Voir la recette</a>
+                </article>
+                <article class="recette-card">
+                    <img src="assets/images/cheesecake-citron-vert-vanille.jpg" alt="Cheesecake vanille citron" class="recette-image">
+                    <h3 class="recette-titre">Cheesecake vanille citron</h3>
+                    <p class="recette-description">Un délicieux cheesecake aux saveurs de vanille et de citron.</p>
+                    <a href="templates/recette_detail.html" class="recette-lien">Voir la recette</a>
+                </article>
+                <article class="recette-card">
+                    <img src="assets/images/IMG20210924210209.jpg" alt="Baba au rhum" class="recette-image">
+                    <h3 class="recette-titre">Baba au rhum</h3>
+                    <p class="recette-description">Un délicieux baba au rhum, moelleux et parfumé.</p>
+                    <a href="templates/recette_detail.html" class="recette-lien">Voir la recette</a>
+                </article>
+                <article class="recette-card">
+                    <img src="assets/images/IMG20220512132848.jpg" alt="Pavlova au fruits rouges" class="recette-image">
+                    <h3 class="recette-titre">Pavlova au fruits rouges</h3>
+                    <p class="recette-description">Une délicieuse pavlova aux fruits rouges, parfaite pour les amateurs de desserts légers.</p>
+                    <a href="templates/recette_detail.html" class="recette-lien">Voir la recette</a>
+                </article>
+                <article class="recette-card">
+                    <img src="assets/images/IMG20220308090235.jpg" alt="Millefeuilles" class="recette-image">
+                    <h3 class="recette-titre">Millefeuilles</h3>
+                    <p class="recette-description">Un délicieux dessert composé de plusieurs couches de pâte feuilletée et de crème pâtissière.</p>
+                    <a href="templates/recette_detail.html" class="recette-lien">Voir la recette</a>
+                </article>
+            </div>
+        </section>
+               
+    </main>
+        <footer class="footer" role="contentinfo">
+            <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+            <nav class ="footer-nav" aria-label="navigation secondaire">
+                <a href="templates/mentions-legales.html">Mentions légales</a>
+                <a href="templates/contact.html">Contact</a>
+                <a href="templates/accessibilite.html">Accessibilité</a>
+            </nav>
+        </footer>
+
+    
+    <!-- Script bootstrap -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> -->
+</body>
+
+</html>
