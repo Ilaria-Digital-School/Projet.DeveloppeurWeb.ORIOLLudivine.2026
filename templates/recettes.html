@@ -21,7 +21,7 @@
 <body>
     <header class="header" role="banner">
         <a href="../index.html" aria-label="Retour à l'accueil">
-            <img class="logo" src="../assets/images/logo_patissons_clair.svg" alt="Logo Pâtissons">
+            <img class="logo" src="../assets/images/patissons-logo.svg" alt="Logo Pâtissons">
         </a>
         <nav class="header-nav" aria-label="navigation principale">
             <a href="../index.html" aria-label="Revenir sur la page d'accueil">Accueil</a>
@@ -43,66 +43,82 @@
         </nav>
     
         <div class="recettes-layout">
-            <aside class ="filtres" aria-label="Filtres de recherche">
-                <label for="recherche-principale">Rechercher une recette</label>
-                <input type="search" id="recherche-principale" name="recherche" placeholder="Rechercher une recette...">
-        
-                <label for="categorie">Catégorie</label>
-                <select name="categorie" id="categorie">
-                    <option value="">Toutes les catégories</option>
-                    <option value="cremes_curds_ganache">Crèmes, curds et ganache</option>
-                    <option value="pates_et_biscuits">Pâtes et biscuits</option>
-                    <option value="tartes_et_millefeuilles">Tartes et millefeuilles</option>
-                    <option value="entremets_et_gateaux_montes">Entremets et gâteaux montés</option>
-                    <option value="patisseries_individuelles">Pâtisseries individuelles</option>
-                    <option value="autres_gourmandises">Autres gourmandises</option>
-                </select>
-        
+            <aside class="filtres" aria-label="Filtres de recherche">
+    
+                <div class="filtre-groupe">
+                    <label for="recherche-principale">Rechercher une recette</label>
+                    <input type="search" id="recherche-principale" name="recherche" placeholder="Rechercher une recette...">
+                </div>
+    
+                <div class="filtre-groupe">
+                    <label for="categorie">Catégorie</label>
+                    <select name="categorie" id="categorie">
+                        <option value="">Toutes les catégories</option>
+                        <option value="cremes_curds_ganache">Crèmes, curds et ganache</option>
+                        <option value="pates_et_biscuits">Pâtes et biscuits</option>
+                        <option value="tartes_et_millefeuilles">Tartes et millefeuilles</option>
+                        <option value="entremets_et_gateaux_montes">Entremets et gâteaux montés</option>
+                        <option value="patisseries_individuelles">Pâtisseries individuelles</option>
+                        <option value="autres_gourmandises">Autres gourmandises</option>
+                    </select>
+                </div>
+    
                 <fieldset>
                     <legend>Temps de préparation</legend>
-        
-                    <input type="radio" name="temps" id="moins30" value="moins30">
-                    <label for="moins30">Moins de 30 min</label>
-        
-                    <input type="radio" name="temps" id="moins1h" value="moins1h">
-                    <label for="moins1h">Moins d'1h</label>
-        
-                    <input type="radio" name="temps" id="plus1h" value="plus1h">
-                    <label for="plus1h">Plus d'1h</label>
+                    <label class="radio-ligne">
+                        <input type="radio" name="temps" value="moins30">
+                        Moins de 30 min
+                    </label>
+                    <label class="radio-ligne">
+                        <input type="radio" name="temps" value="moins1h">
+                        Moins d'1h
+                    </label>
+                    <label class="radio-ligne">
+                        <input type="radio" name="temps" value="plus1h">
+                        Plus d'1h
+                    </label>
                 </fieldset>
-        
+    
                 <fieldset>
                     <legend>Difficulté</legend>
-        
-                    <input type="radio" name="difficulte" id="facile" value="facile">
-                    <label for="facile">Facile</label>
-        
-                    <input type="radio" name="difficulte" id="moyen" value="moyen">
-                    <label for="moyen">Moyen</label>
-        
-                    <input type="radio" name="difficulte" id="difficile" value="difficile">
-                    <label for="difficile">Difficile</label>
+                    <label class="radio-ligne">
+                        <input type="radio" name="difficulte" value="facile">
+                        Facile
+                    </label>
+                    <label class="radio-ligne">
+                        <input type="radio" name="difficulte" value="moyen">
+                        Moyen
+                    </label>
+                    <label class="radio-ligne">
+                        <input type="radio" name="difficulte" value="difficile">
+                        Difficile
+                    </label>
                 </fieldset>
-        
-                <label for="recherche-ingredient">Filtrer par ingrédient</label>
-                <input type="search" id="recherche-ingredient" name="ingredient" placeholder="Ex : fraises, citron, chocolat…"
-                    autocomplete="off">
+    
+                <div class="filtre-groupe">
+                    <label for="recherche-ingredient">Filtrer par ingrédient</label>
+                    <input type="search" id="recherche-ingredient" name="ingredient"
+                        placeholder="Ex : fraises, citron, chocolat…" autocomplete="off">
+                </div>
+    
             </aside>
-       
+    
             <section class="resultats" aria-label="Résultats des recettes">
                 <h1>Résultats de la recherche</h1>
-                <div class="container">
+                <div class="container_resultats">
                     <article class="recette-card">
                         <img src="../assets/images/received_1547487432012481.jpg" alt="Tarte au citron meringuée"
                             class="recette-image">
                         <h3 class="recette-titre">Tarte au citron meringuée</h3>
-                        <p class="recette-description">Une tarte acidulée et sucrée, parfaite pour les amateurs de citron.</p>
+                        <p class="recette-description">Une tarte acidulée et sucrée, parfaite pour les amateurs de citron.
+                        </p>
                         <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
                     </article>
                     <article class="recette-card">
                         <img src="../assets/images/IMG_20180223_155845.jpg" alt="Royal chocolat" class="recette-image">
                         <h3 class="recette-titre">Royal chocolat</h3>
-                        <p class="recette-description">Un classique de la pâtisserie française, composé d'une mousse au chocolat et
+                        <p class="recette-description">Un classique de la pâtisserie française, composé d'une mousse au
+                            chocolat et
                             d'un croustillant praliné.</p>
                         <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
                     </article>
@@ -120,23 +136,26 @@
                         <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
                     </article>
                     <article class="recette-card">
-                        <img src="../assets/images/IMG20220512132848.jpg" alt="Pavlova au fruits rouges" class="recette-image">
+                        <img src="../assets/images/IMG20220512132848.jpg" alt="Pavlova au fruits rouges"
+                            class="recette-image">
                         <h3 class="recette-titre">Pavlova au fruits rouges</h3>
-                        <p class="recette-description">Une délicieuse pavlova aux fruits rouges, parfaite pour les amateurs de
+                        <p class="recette-description">Une délicieuse pavlova aux fruits rouges, parfaite pour les amateurs
+                            de
                             desserts légers.</p>
                         <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
                     </article>
                     <article class="recette-card">
                         <img src="../assets/images/IMG20220308090235.jpg" alt="Millefeuilles" class="recette-image">
                         <h3 class="recette-titre">Millefeuilles</h3>
-                        <p class="recette-description">Un délicieux dessert composé de plusieurs couches de pâte feuilletée et de
+                        <p class="recette-description">Un délicieux dessert composé de plusieurs couches de pâte feuilletée
+                            et de
                             crème pâtissière.</p>
                         <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
                     </article>
                 </div>
             </section>
         </div>
-        
+    
     </main>
 
     <footer class="footer" role="contentinfo">

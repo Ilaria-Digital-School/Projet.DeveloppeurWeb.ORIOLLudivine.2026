@@ -7,7 +7,8 @@
 
 
 body {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: normal;
     margin: 0;
     padding: 0;
     background-color: #EDE0CC;
@@ -19,13 +20,13 @@ body {
    ================================ */
 
 .hero {
-    background-image: url('../images/hero-patissons.jpg');
+    background-image: url('../images/hero-patissons2.jpg');
     background-size: cover;
     background-position: center;
     height: 600px;
     display: flex;
     justify-content: center;
-    align-items: left;
+    align-items: flex-start;
     flex-direction: column;
     color: #31190c;
     gap: 60px;
@@ -34,29 +35,27 @@ body {
 
  h1 {
     font-size: clamp(24px, 3.5vw, 40px);
-    margin-bottom: 150px;
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    margin-bottom: 300px;
     font-style: italic;
-    font-weight: 200;
-    line-height: 1.25;
+    font-weight: 300;
+    
 }
 
 .hero p {
 
     font-size: clamp(15px, 2vw, 20px);
-    margin-bottom: 80px;
-    font-family: 'Georgia', serif;
+    margin-bottom: 20px;
 }
 
-.hero-btn {
+/* .hero-btn {
     display: inline-block;
     padding: 15px 30px;
     background-color: #C4593A;
     color: white;
     text-decoration: none;
     font-size: clamp(14px, 1.8vw, 18px);
-    border-radius: 5px;
-}
+    border-radius: 30px;
+} */
 .hero-content {
     
    padding: 20px 10px;
@@ -68,12 +67,19 @@ body {
 .header, .footer    
 {
     background-color: #EDE0CC;
-    padding: 20px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid rgba(93, 55, 28, 0.15);
+    justify-content: space-between;
+}
+
+.footer {
+    border-top: 1px solid rgba(93, 55, 28, 0.15);
+    border-bottom: none;
+    margin-top: 40px;
+    padding: 40px 20px;
 }
 
 .header a, .footer a {
@@ -81,7 +87,11 @@ body {
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
-    font-family: 'Georgia', serif;
+    transition: color 0.2s ease;
+}
+
+.header a:hover, .footer a:hover {
+    color: #D85A30;  
 }
 
 .header-nav {
@@ -101,7 +111,6 @@ body {
 .intro h2 {
     font-size: clamp(28px, 4.5vw, 50px);
     margin-bottom: 20px;
-    font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
     font-weight: 200;
     line-height: 1.25;
@@ -111,19 +120,19 @@ body {
     font-size: clamp(16px, 2.5vw, 22px);
     max-width: 800px;
     margin: auto;
-    font-family: 'Georgia', serif;
+    color :#8a3d14;
 }
 
 .categories {
     padding: 80px 40px;
     background-color: #55250c;
     color: white;
+    text-align: center;
 }
 
 .categories h2 {
     font-size: clamp(20px, 2.8vw, 30px);
     margin-bottom: 40px;
-    font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
 }
 
@@ -132,41 +141,55 @@ body {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 20px;
+    flex-wrap: wrap;
    
 }
 
 .categories__lien {
-    color:#ea4b1f;
-    text-decoration: none;
-    font-size: clamp(14px, 1.8vw, 20px);
-    font-style: italic;
-    padding: 10px 20px;
-    border: 2px solid #C4593A;
-    border-radius: 5px;
     display: flex;
+    align-items: center;
     justify-content: center;
+    text-align: center;
+    white-space: nowrap;       
+    color: #f0d5c0;
+    text-decoration: none;
+    font-size: clamp(16px, 1.6vw, 20px);
+    font-style: italic;
+    padding: 14px 24px;
+    border: 1px solid rgba(240, 213, 192, 0.4);
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.25s ease;
+}
+
+.categories__lien:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #C4593A;
+    color: #ffffff;
+    transform: translateY(-2px);  
 }
 
 /* GRILLE DE RECETTES */
 
 #titre-resultats {
     font-size: clamp(24px, 3.5vw, 40px);
-    margin-top: 60px;
+    margin-top: 40px;
     text-align: center;
-    font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
     font-weight: 200;
     line-height: 1.25;
 }
 .container {
-  padding: 80px 40px;
-  margin: auto;
+  padding: 20px 40px 0 40px;
+  padding-bottom: 0;
+  margin: 0 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap : 40px;
 }
+
 
 .recette-card {
   background-color: #FFFFFF;
@@ -194,32 +217,137 @@ body {
     margin-top: 20px;
     align-self: center;
     margin-bottom: 20px;
+    transition: background-color 0.2s ease;
+    border-radius: 30px;
+}
+
+.recette-lien:hover {
+    background-color: #dd8d47;
 }
 
 
 .recette-titre ,.recette-description {
     padding: 10px 15px;
-    font-family: 'Georgia', serif;
     color: #31190c;
 
 }
 /* ================================
    Recettes.html
-   ================================ */
+   ================================ */   
 
+/* ===== LAYOUT RECETTES ===== */
 .recettes-layout {
-    display: flex;
-    gap: 40px;
-    padding: 40px;
-}   
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  padding: 2rem 2rem 2rem 1rem;
+  max-width: 1200px;
+  margin: 30px 40px;
+}
+
+/* ===== ASIDE FILTRES ===== */
+.filtres {
+  background:#FDFAF6 ;  
+  border: 1px solid #e8d5c0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  height: fit-content;                        /* colle au contenu, ne s'étire pas */
+}
+
+/* Titre du panneau */
+.filtres::before {
+  content: "Filtrer les recettes";
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:#B07A4A;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8d5c0;
+}
+
+/* Labels au-dessus des inputs */
+.filtres label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #B07A4A;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Inputs et select */
+.filtres input[type="search"],
+.filtres select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border: 1px solid #e8d5c0;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 16px;
+  color: #31190c;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+/* Fieldsets radios */
+.filtres fieldset {
+  border: 1px solid #e8d5c0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0;
+  background: #ffffff;
+}
+
+.filtres legend {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #B07A4A;
+  padding: 0 6px;
+}
+
+/* Lignes radio */
+.filtres fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #31190c;
+  cursor: pointer;
+}
+
+.filtres input[type="radio"] {
+  accent-color: #C4593A;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
 
 .resultats h1 {
     font-size: clamp(28px, 4.5vw, 50px);
-    margin-top: 60px;
+    margin: 30px;
     text-align: center;
-    font-family: 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
   
+}
+
+.container_resultats {
+    padding: 20px 40px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
 }
 
 /* La carte devient un contexte de positionnement */
@@ -233,6 +361,40 @@ body {
     position: absolute;
     inset: 0;        /* équivaut à top:0; right:0; bottom:0; left:0 */
 }
+
+/* ================================
+   Recette_detail.html
+   ================================ */
+
+.recette-detail h1 {
+    font-size: clamp(28px, 4.5vw, 50px);
+    margin: 30px;
+    text-align: center;
+    font-style: italic;
+}
+
+.recette-detail-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+.recette-detail-content {
+    padding: 20px 40px;
+    max-width: 800px;
+    margin: auto;
+    color :#8a3d14;
+    line-height: 1.6;
+}
+
+.recette-detail-content h2 {
+    font-size: clamp(24px, 3.5vw, 40px);
+    margin-bottom: 20px;
+    font-style: italic;
+    color :#31190c;
+} 
 
 
 /* ================================
@@ -252,7 +414,6 @@ nav[aria-label="Fil d'ariane"] ol {
     gap: 8px;
     margin: 0;
     padding: 0;
-    font-family: 'Georgia', serif;
     font-size: clamp(12px, 1.2vw, 14px);
 }
 
@@ -316,8 +477,20 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
     .categories {
         padding: 60px 30px;
     }
-}
 
+
+    /* La sidebar rétrécit un peu */
+    .recettes-layout {
+        grid-template-columns: 260px 1fr;
+        margin: 20px 20px;
+    }
+
+    /* La grille de résultats passe à 2 colonnes */
+    .container_resultats {
+        grid-template-columns: 1fr 1fr;
+        padding: 20px;
+    }
+}
 
 /* --- MOBILE : max 768px --- */
 @media (max-width: 768px) {
@@ -370,5 +543,29 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
 
     .categories {
         padding: 40px 20px;
+    }
+
+    /* Le layout devient une colonne : filtres au-dessus, cartes en dessous */
+    .recettes-layout {
+        grid-template-columns: 1fr;
+        margin: 10px 15px;
+        padding: 1rem;
+    }
+
+    /* La sidebar prend toute la largeur */
+    .filtres {
+        width: 100%;
+    }
+
+    /* La grille de résultats passe à 1 colonne */
+    .container_resultats {
+        grid-template-columns: 1fr;
+        padding: 10px 0;
+        gap: 20px;
+    }
+
+    /* Le titre résultats moins d'espace */
+    .resultats h1 {
+        margin-top: 30px;
     }
 }
