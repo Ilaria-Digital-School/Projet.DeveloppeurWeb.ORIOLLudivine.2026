@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Pâtissons</title>
+    <title>Inscription - Pâtissons</title>
     <meta name="description"
-        content="Connecter vous pour partager et découvrir les meilleures recettes !">
+        content="Inscrivez-vous sur Pâtissons pour partager et découvrir les meilleures recettes de pâtisseries.">
 
     <!-- Polices Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
         rel="stylesheet">
-    
+
     <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Lien vers le fichier CSS du Chatbot -->
@@ -26,41 +26,50 @@
         </a>
         <nav class="header-nav" aria-label="navigation principale">
             <a href="../index.html" aria-label="Revenir sur la page d'accueil">Accueil</a>
-            <a href="recettes.html" >Recettes</a>
+            <a href="recettes.html">Recettes</a>
             <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
-            <a href="connexion.html" aria-current="page">Connexion</a>
+            <a href="inscription.html" aria-current="page">Inscription</a>
         </nav>
 
     </header>
     <main>
 
-<!-- Fil d'Ariane -->
+        <!-- Fil d'Ariane -->
         <nav aria-label="Fil d'ariane">
             <ol>
                 <li><a href="../index.html">Accueil</a></li>
-                <li aria-current="page">Connexion</li>
+                <li><a href="connexion.html">Connexion</a></li>
+                <li aria-current="page">Inscription</li>
             </ol>
         </nav>
-    
-        <section class="connexion-section" aria-label="Formulaire de connexion">
-            <h1>Connexion à votre compte</h1>
+        <section class="connexion-section" aria-label="Formulaire d'inscription">
+            <h1>Créer un compte</h1>
             <form class="connexion-form" action="#" method="post" novalidate>
                 <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="username" placeholder="Choisissez un nom d'utilisateur"
+                        autocomplete="username" required>
+                </div>
+                <div class="form-group">
                     <label for="email">Adresse e-mail</label>
-                    <input type="email" id="email" name="email" placeholder="Entrez votre adresse e-mail" autocomplete="email"
-                        required>
+                    <input type="email" id="email" name="email" placeholder="Entrez votre adresse e-mail"
+                        autocomplete="email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe"
-                        autocomplete="current-password" required>
+                    <input type="password" id="password" name="password" placeholder="Créez un mot de passe"
+                        autocomplete="new-password" minlength="8" required>
                 </div>
-                <button type="submit">Se connecter</button>
-                <a href="mot_de_passe_oublie.html" class="auth-lien-discret">Mot de passe oublié ?</a>
-                <p class="auth-lien-discret">Pas encore de compte ? <a href="inscription.html">Inscrivez-vous</a></p>
+                <div class="form-group">
+                    <label for="password-confirm">Confirmer le mot de passe</label>
+                    <input type="password" id="password-confirm" name="password_confirm"
+                        placeholder="Répétez votre mot de passe" autocomplete="new-password" required>
+                </div>
+
+                <button type="submit">S'inscrire</button>
+                <p class="auth-lien-discret">Déjà un compte ? <a href="connexion.html">Connectez-vous</a></p>
             </form>
         </section>
-
     </main>
     <footer class="footer" role="contentinfo">
         <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
@@ -70,8 +79,9 @@
             <a href="accessibilite.html">Accessibilité</a>
         </nav>
     </footer>
-       
+
     <!-- Lien vers le fichier JavaScript du Chatbot -->
     <script src="../assets/js/chatbot.js"></script>
-    </body>
+</body>
+
 </html>

@@ -16,11 +16,37 @@ body {
 }
 
 /* ================================
+           Menu Burger
+   ================================ */
+
+/* Le burger — caché sur desktop */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.burger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #31190c;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+   
+
+/* ================================
            Index.html
    ================================ */
 
 .hero {
-    background-image: url('../images/hero-patissons2.jpg');
+    background-image: url('../images/hero-patissons.jpg');
     background-size: cover;
     background-position: center;
     height: 600px;
@@ -45,17 +71,9 @@ body {
 
     font-size: clamp(15px, 2vw, 20px);
     margin-bottom: 20px;
+    color: beige;
 }
 
-/* .hero-btn {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #C4593A;
-    color: white;
-    text-decoration: none;
-    font-size: clamp(14px, 1.8vw, 18px);
-    border-radius: 30px;
-} */
 .hero-content {
     
    padding: 20px 10px;
@@ -247,8 +265,8 @@ body {
 
 /* ===== ASIDE FILTRES ===== */
 .filtres {
-  background:#FDFAF6 ;  
-  border: 1px solid #e8d5c0;
+  background-color:#f3eade;
+  border: 1px solid #633a0d ;
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
@@ -264,7 +282,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color:#B07A4A;
+  color:#C4593A;
   padding-bottom: 10px;
   border-bottom: 1px solid #e8d5c0;
 }
@@ -275,7 +293,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #B07A4A;
+  color: #31190c;
   display: block;
   margin-bottom: 4px;
 }
@@ -300,17 +318,23 @@ body {
   border: 1px solid #e8d5c0;
   border-radius: 8px;
   padding: 10px 14px;
+  padding-top: 1.5rem;
   margin: 0;
-  background: #ffffff;
+  background: #f3eade;
+  position: relative;
 }
 
 .filtres legend {
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #B07A4A;
-  padding: 0 6px;
+    position: absolute;
+    top: -0.7rem;
+    left: 1rem;
+    background: #EFD3AD;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #3e2017;
+    padding: 0 6px;
 }
 
 /* Lignes radio */
@@ -448,6 +472,298 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
     font-style: italic;
 }
 
+/* ================================
+   Ajouter_recette.html
+   ================================ */
+
+.ajouter-recette {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.ajouter-recette h1 {
+    font-size: clamp(28px, 4.5vw, 50px);
+    text-align: center;
+    font-style: italic;
+    font-weight: 300;
+    color: #803209;
+    margin-bottom: 40px;
+}
+
+.ajouter-recette-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Fieldsets */
+.ajouter-recette-form fieldset {
+    font-family: 'Georgia', serif;
+    background: #f3eade;
+    border: 1px solid #633a0d;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position :relative;
+    padding-top: 2rem;
+}
+
+.ajouter-recette-form legend {
+    font-family: 'Georgia', serif;
+    position: absolute;
+    top: -0.7rem;           
+    left: 1.2rem;          
+    background: #EFD3AD;    
+    padding: 0 8px; 
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color:#643b17;
+    padding: 0 8px;
+}
+
+/* Labels */
+.ajouter-recette-form label {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: #643b17;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Inputs, select, textarea */
+.ajouter-recette-form input[type="text"],
+.ajouter-recette-form input[type="number"],
+.ajouter-recette-form input[type="file"],
+.ajouter-recette-form select,
+.ajouter-recette-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    border: 1px solid #e8d5c0;
+    border-radius: 8px;
+    background: #ffffff;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16px;
+    color: #31190c;
+    transition: border-color 0.2s ease;
+}
+
+.ajouter-recette-form input:focus,
+.ajouter-recette-form select:focus,
+.ajouter-recette-form textarea:focus {
+    border-color: #B07A4A;
+    outline: none;
+}
+
+/* Textarea non redimensionnable horizontalement */
+.ajouter-recette-form textarea {
+    resize: vertical;
+}
+
+/* Ligne de 3 champs côte à côte */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Radios */
+.radio-groupe {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.radio-ligne {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #31190c;
+    cursor: pointer;
+}
+
+.ajouter-recette-form input[type="radio"] {
+    accent-color: #C4593A;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+/* Texte d'aide sous les champs */
+.form-aide {
+    font-size: 12px;
+    color: #B07A4A;
+    font-style: italic;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Mention champs obligatoires */
+.form-obligatoire {
+    font-size: 12px;
+    color: #B07A4A;
+    font-style: italic;
+}
+
+/* Bouton submit */
+.ajouter-recette-form button[type="submit"] {
+    display: inline-block;
+    padding: 14px 40px;
+    background-color: #C4593A;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(14px, 1.8vw, 18px);
+    font-style: italic;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.2s ease;
+}
+
+.ajouter-recette-form button[type="submit"]:hover {
+    background: #e0700e;
+}
+
+/* ================================
+   CONNEXION / INSCRIPTION / 
+   MOT DE PASSE OUBLIÉ
+   ================================ */
+
+.connexion-section {
+    max-width: 480px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.connexion-section h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-style: italic;
+    font-weight: 300;
+    color: #31190c;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.auth-description {
+    text-align: center;
+    font-size: 15px;
+    color: #B07A4A;
+    font-style: italic;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+/* Carte formulaire */
+.connexion-form {
+    background: #FDFAF6;
+    border: 1px solid #e8d5c0;
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Labels */
+.connexion-form label {
+    font-family: 'Georgia', serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #31190c;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Inputs */
+.connexion-form input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1px solid #e8d5c0;
+    border-radius: 8px;
+    background: white;
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    color: #31190c;
+    transition: border-color 0.2s ease;
+}
+
+.connexion-form input:focus {
+    border-color: #B07A4A;
+    outline: none;
+}
+
+.connexion-form input::placeholder {
+    color: #905624;
+    opacity: 0.5;
+    font-style: italic;
+}
+
+/* Bouton submit */
+.connexion-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #C4593A;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: 300;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 8px;
+}
+
+.connexion-form button[type="submit"]:hover {
+    background: #e0700e;
+}
+
+/* Lien discret mot de passe oublié / retour */
+.auth-lien-discret {
+    text-align: center;
+    font-size: 13px;
+    color: #6e3707;
+    font-style: normal;
+    text-decoration: none;
+    display: block;
+}
+
+.auth-lien-discret:hover {
+    text-decoration: underline;
+}
+
+.auth-lien-discret a {
+    color: #C4593A;
+    text-decoration: none;
+}
+
+.auth-lien-discret a:hover {
+    text-decoration: underline;
+}
+
+/* Mention champs obligatoires */
+.form-obligatoire {
+    font-size: 12px;
+    color: #6e3707;
+    font-style: normal;
+    text-align: center;
+}
 
 
 /* ================================
@@ -494,6 +810,38 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
 
 /* --- MOBILE : max 768px --- */
 @media (max-width: 768px) {
+    
+     /* Burger visible sur mobile */
+    .burger {
+        display: flex;
+    }
+
+    /* Nav cachée par défaut sur mobile */
+    .header-nav {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        width: 100%;
+        padding: 20px 0;
+        border-top: 1px solid #e8d5c0;
+    }
+
+    /* Nav visible quand le burger est cliqué */
+    .header-nav.ouvert {
+        display: flex;
+    }
+
+    /* Animation du burger en croix quand ouvert */
+    .burger.actif span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .burger.actif span:nth-child(2) {
+        opacity: 0;
+    }
+    .burger.actif span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
 
     /* Le header passe en colonne : logo au-dessus, nav en dessous */
     .header {
@@ -568,4 +916,24 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
     .resultats h1 {
         margin-top: 30px;
     }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .radio-groupe {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+    .connexion-section {
+        margin: 30px auto;
+    }
+
+    .connexion-form {
+        padding: 1.5rem;
+    }
+}
+
 }

@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Pâtissons</title>
+    <title>Mot de passe oublié - Pâtissons</title>
     <meta name="description"
-        content="Connecter vous pour partager et découvrir les meilleures recettes !">
+        content="Réinitialisez votre mot de passe sur Pâtissons.">
 
     <!-- Polices Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
         rel="stylesheet">
-    
+
     <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Lien vers le fichier CSS du Chatbot -->
@@ -26,7 +26,7 @@
         </a>
         <nav class="header-nav" aria-label="navigation principale">
             <a href="../index.html" aria-label="Revenir sur la page d'accueil">Accueil</a>
-            <a href="recettes.html" >Recettes</a>
+            <a href="recettes.html">Recettes</a>
             <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
             <a href="connexion.html" aria-current="page">Connexion</a>
         </nav>
@@ -34,34 +34,36 @@
     </header>
     <main>
 
-<!-- Fil d'Ariane -->
+        <!-- Fil d'Ariane -->
         <nav aria-label="Fil d'ariane">
             <ol>
                 <li><a href="../index.html">Accueil</a></li>
-                <li aria-current="page">Connexion</li>
+                <li><a href="connexion.html">Connexion</a></li>
+                <li aria-current="page">Mot de passe oublié</li>
             </ol>
         </nav>
-    
-        <section class="connexion-section" aria-label="Formulaire de connexion">
-            <h1>Connexion à votre compte</h1>
+
+
+        <section class="connexion-section" aria-label="Formulaire de réinitialisation du mot de passe">
+            <h1>Mot de passe oublié</h1>
+            <p class="auth-description">
+                Saisissez votre adresse e-mail. Nous vous enverrons un lien pour réinitialiser votre mot de passe.
+            </p>
+
             <form class="connexion-form" action="#" method="post" novalidate>
                 <div class="form-group">
                     <label for="email">Adresse e-mail</label>
-                    <input type="email" id="email" name="email" placeholder="Entrez votre adresse e-mail" autocomplete="email"
+                    <input type="email" id="email" name="email" placeholder="votre@email.com" autocomplete="email"
                         required>
                 </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="Entrez votre mot de passe"
-                        autocomplete="current-password" required>
-                </div>
-                <button type="submit">Se connecter</button>
-                <a href="mot_de_passe_oublie.html" class="auth-lien-discret">Mot de passe oublié ?</a>
-                <p class="auth-lien-discret">Pas encore de compte ? <a href="inscription.html">Inscrivez-vous</a></p>
+
+                <button type="submit" class="auth-btn">Envoyer le lien</button>
+
+                <a href="connexion.html" class="auth-lien-discret">← Retour à la connexion</a>
             </form>
         </section>
-
     </main>
+
     <footer class="footer" role="contentinfo">
         <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
         <nav class="footer-nav" aria-label="Navigation secondaire">
@@ -70,8 +72,9 @@
             <a href="accessibilite.html">Accessibilité</a>
         </nav>
     </footer>
-       
+
     <!-- Lien vers le fichier JavaScript du Chatbot -->
     <script src="../assets/js/chatbot.js"></script>
-    </body>
+</body>
+
 </html>
