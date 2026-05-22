@@ -45,25 +45,25 @@
     
         <div class="recettes-layout">
             <aside class="filtres" aria-label="Filtres de recherche">
-    
+        
                 <div class="filtre-groupe">
                     <label for="recherche-principale">Rechercher une recette</label>
                     <input type="search" id="recherche-principale" name="recherche" placeholder="Rechercher une recette...">
                 </div>
-    
+        
                 <div class="filtre-groupe">
                     <label for="categorie">Catégorie</label>
                     <select name="categorie" id="categorie">
                         <option value="">Toutes les catégories</option>
-                        <option value="cremes_curds_ganache">Crèmes, curds et ganache</option>
-                        <option value="pates_et_biscuits">Pâtes et biscuits</option>
-                        <option value="tartes_et_millefeuilles">Tartes et millefeuilles</option>
-                        <option value="entremets_et_gateaux_montes">Entremets et gâteaux montés</option>
-                        <option value="patisseries_individuelles">Pâtisseries individuelles</option>
-                        <option value="autres_gourmandises">Autres gourmandises</option>
+                        <option value="cremes-curds-ganache">Crèmes, curds et ganache</option>
+                        <option value="pates-biscuits">Pâtes et biscuits</option>
+                        <option value="tartes-millefeuilles">Tartes et millefeuilles</option>
+                        <option value="entremets-gateaux-montes">Entremets et gâteaux montés</option>
+                        <option value="patisseries-individuelles">Pâtisseries individuelles</option>
+                        <option value="autres-gourmandises">Autres gourmandises</option>
                     </select>
                 </div>
-    
+        
                 <fieldset>
                     <legend>Temps de préparation</legend>
                     <label class="radio-ligne">
@@ -79,7 +79,7 @@
                         Plus d'1h
                     </label>
                 </fieldset>
-    
+        
                 <fieldset>
                     <legend>Difficulté</legend>
                     <label class="radio-ligne">
@@ -95,64 +95,21 @@
                         Difficile
                     </label>
                 </fieldset>
-    
+        
                 <div class="filtre-groupe">
                     <label for="recherche-ingredient">Filtrer par ingrédient</label>
                     <input type="search" id="recherche-ingredient" name="ingredient"
                         placeholder="Ex : fraises, citron, chocolat…" autocomplete="off">
                 </div>
-    
+                <button id="btn-reset" type="button" class="btn-reset">
+                    Réinitialiser les filtres
+                </button>
             </aside>
     
             <section class="resultats" aria-label="Résultats des recettes">
                 <h1>Résultats de la recherche</h1>
-                <div class="container_resultats">
-                    <article class="recette-card">
-                        <img src="../assets/images/received_1547487432012481.jpg" alt="Tarte au citron meringuée"
-                            class="recette-image">
-                        <h3 class="recette-titre">Tarte au citron meringuée</h3>
-                        <p class="recette-description">Une tarte acidulée et sucrée, parfaite pour les amateurs de citron.
-                        </p>
-                        <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
-                    </article>
-                    <article class="recette-card">
-                        <img src="../assets/images/IMG_20180223_155845.jpg" alt="Royal chocolat" class="recette-image">
-                        <h3 class="recette-titre">Royal chocolat</h3>
-                        <p class="recette-description">Un classique de la pâtisserie française, composé d'une mousse au
-                            chocolat et
-                            d'un croustillant praliné.</p>
-                        <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
-                    </article>
-                    <article class="recette-card">
-                        <img src="../assets/images/cheesecake-citron-vert-vanille.jpg" alt="Cheesecake vanille citron"
-                            class="recette-image">
-                        <h3 class="recette-titre">Cheesecake vanille citron</h3>
-                        <p class="recette-description">Un délicieux cheesecake aux saveurs de vanille et de citron.</p>
-                        <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
-                    </article>
-                    <article class="recette-card">
-                        <img src="../assets/images/IMG20210924210209.jpg" alt="Baba au rhum" class="recette-image">
-                        <h3 class="recette-titre">Baba au rhum</h3>
-                        <p class="recette-description">Un délicieux baba au rhum, moelleux et parfumé.</p>
-                        <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
-                    </article>
-                    <article class="recette-card">
-                        <img src="../assets/images/IMG20220512132848.jpg" alt="Pavlova au fruits rouges"
-                            class="recette-image">
-                        <h3 class="recette-titre">Pavlova au fruits rouges</h3>
-                        <p class="recette-description">Une délicieuse pavlova aux fruits rouges, parfaite pour les amateurs
-                            de
-                            desserts légers.</p>
-                        <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
-                    </article>
-                    <article class="recette-card">
-                        <img src="../assets/images/IMG20220308090235.jpg" alt="Millefeuilles" class="recette-image">
-                        <h3 class="recette-titre">Millefeuilles</h3>
-                        <p class="recette-description">Un délicieux dessert composé de plusieurs couches de pâte feuilletée
-                            et de
-                            crème pâtissière.</p>
-                        <a href="recette_detail.html" class="recette-lien">Voir la recette</a>
-                    </article>
+                <div class="container_resultats" id="grille-recettes">
+                    <!-- Les cartes seront générées par le JS -->
                 </div>
             </section>
         </div>
@@ -170,5 +127,7 @@
        
     <!-- Lien vers le fichier JavaScript du Chatbot -->
     <script src="../assets/js/chatbot.js"></script>
+    <!-- Lien vers le fichier JavaScript de la page recettes -->
+    <script src="../assets/js/recettes.js"></script>
     </body>
 </html>

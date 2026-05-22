@@ -6,11 +6,11 @@
 const FAQ = [
   {
     mots_cles: ["blancs", "neige", "monter", "meringue"],
-    reponse: "Pour monter des blancs en neige, vos œufs doivent être à température ambiante et le bol parfaitement propre et sec. Commencez à vitesse lente, puis augmentez progressivement. Une pincée de sel ou quelques gouttes de jus de citron aident à les stabiliser. ✨"
+    reponse: "Pour monter des blancs en neige, vos œufs doivent être à température ambiante et le bol parfaitement propre et sec. Commencez à vitesse lente, puis augmentez progressivement. Quelques gouttes de jus de citron aident à les stabiliser au besoin. ✨"
   },
   {
     mots_cles: ["beurre", "remplacer", "substitut", "alternative"],
-    reponse: "Pour remplacer le beurre, plusieurs options selon la recette : huile de coco (même quantité), compote de pommes (moitié de la quantité pour les gâteaux moelleux), ou margarine végétale. Attention, chaque substitut change légèrement la texture finale. 🧈"
+    reponse: "Pour remplacer le beurre dans une pâte de l'huile de coco en même quantité, compote de pommes (moitié de la quantité pour les gâteaux moelleux)."
   },
   {
     mots_cles: ["ganache", "tranché", "séparé", "rattraper", "huile"],

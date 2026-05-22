@@ -37,7 +37,7 @@
         <span></span>
     </button>
     
-        <nav class="header-nav" aria-label="navigation principale">
+        <nav class="header-nav" id="header-nav" aria-label="navigation principale">
             <a href="index.html" aria-current="page">Accueil</a>
             <a href="templates/recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
             <a href="templates/ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
@@ -74,21 +74,20 @@
         <section class="categories" aria-label="Recherche par catégories">
             <h2>Recherche par catégories</h2>
             <ul class="categories__liste">
-                <li><a href="#" class="categories__lien">Crèmes,
-                        curds et ganache</a></li>
-                <li><a href="#" class="categories__lien">Pâtes et
-                        biscuits</a></li>
-                <li><a href="#" class="categories__lien">Tartes et
-                        millefeuilles</a></li>
-                <li><a href="#" class="categories__lien">Entremets et
-                        gâteaux montés</a></li>
-                <li><a href="#" class="categories__lien">Pâtisseries
-                        individuelles</a></li>
-                <li><a href="#" class="categories__lien">Autres gourmandises</a>
+                <li><a href="templates/recettes.html?categorie=cremes-curds-ganache" class="categories__lien">Crèmes, curds et
+                        ganache</a></li>
+                <li><a href="templates/recettes.html?categorie=pates-biscuits" class="categories__lien">Pâtes et biscuits</a>
                 </li>
+                <li><a href="templates/recettes.html?categorie=tartes-millefeuilles" class="categories__lien">Tartes et
+                        millefeuilles</a></li>
+                <li><a href="templates/recettes.html?categorie=entremets-gateaux-montes" class="categories__lien">Entremets
+                        et gâteaux montés</a></li>
+                <li><a href="templates/recettes.html?categorie=patisseries-individuelles" class="categories__lien">Pâtisseries
+                        individuelles</a></li>
+                <li><a href="templates/recettes.html?categorie=autres-gourmandises" class="categories__lien">Autres
+                        gourmandises</a></li>
             </ul>
         </section>
-        
         <!-- Toutes les recettes -->
         <section aria-label="Toutes les recettes">
             <h2 id="titre-resultats">Toutes les recettes</h2>
@@ -146,6 +145,8 @@
 
     <!-- Lien vers le fichier JavaScript du Chatbot -->
     <script src="assets/js/chatbot.js"></script>
+    <!-- Lien vers le fichier JavaScript principal -->
+    <script src="assets/js/main.js"></script>
    </body>
 
 </html>

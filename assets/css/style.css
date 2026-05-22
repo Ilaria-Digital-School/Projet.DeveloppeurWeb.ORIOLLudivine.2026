@@ -44,6 +44,13 @@ body {
 /* ================================
            Index.html
    ================================ */
+.logo {
+  transition: transform 0.4s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
 
 .hero {
     background-image: url('../images/hero-patissons.jpg');
@@ -126,6 +133,20 @@ body {
     
 }
 
+/* État de départ : invisible et décalé vers le bas */
+.intro-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+/* État d'arrivée : visible et à sa place */
+.intro-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+    
+
 .intro h2 {
     font-size: clamp(28px, 4.5vw, 50px);
     margin-bottom: 20px;
@@ -170,14 +191,14 @@ body {
     justify-content: center;
     text-align: center;
     white-space: nowrap;       
-    color: #f0d5c0;
+    color: #cc4925;
     text-decoration: none;
     font-size: clamp(16px, 1.6vw, 20px);
-    font-style: italic;
+    font-style: normal;
     padding: 14px 24px;
     border: 1px solid rgba(240, 213, 192, 0.4);
     border-radius: 30px;
-    background: rgba(255, 255, 255, 0.05);
+    background:beige;
     transition: all 0.25s ease;
 }
 
@@ -215,6 +236,12 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 0.30s ease-in-out;
+  box-shadow: #31190c 4px 4px 8px, rgba(49, 25, 12, 0.1) 5px 2px 4px;
+}
+
+.recette-card:hover {
+  transform: scale(1.05);
 }
 
 .recette-image {
@@ -247,6 +274,8 @@ body {
 .recette-titre ,.recette-description {
     padding: 10px 15px;
     color: #31190c;
+    font-style: normal;
+    font-weight: 400;
 
 }
 /* ================================
@@ -328,7 +357,7 @@ body {
     position: absolute;
     top: -0.7rem;
     left: 1rem;
-    background: #EFD3AD;
+    background: #f3eade;
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -356,6 +385,26 @@ body {
   width: 15px;
   height: 15px;
   cursor: pointer;
+}
+
+.btn-reset {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #e38010;
+    border-radius: 8px;
+    color: #563417;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-reset:hover {
+    background: #e8d5c0;
+    color: #31190c;
 }
 
 .resultats h1 {
@@ -516,7 +565,7 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
     position: absolute;
     top: -0.7rem;           
     left: 1.2rem;          
-    background: #EFD3AD;    
+    background: #f3eade;    
     padding: 0 8px; 
     font-size: 15px;
     font-weight: 600;
@@ -830,17 +879,6 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
     /* Nav visible quand le burger est cliqué */
     .header-nav.ouvert {
         display: flex;
-    }
-
-    /* Animation du burger en croix quand ouvert */
-    .burger.actif span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-    }
-    .burger.actif span:nth-child(2) {
-        opacity: 0;
-    }
-    .burger.actif span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
     }
 
     /* Le header passe en colonne : logo au-dessus, nav en dessous */
