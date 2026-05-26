@@ -2,6 +2,7 @@
 
 const burger = document.getElementById('burger');
 const nav = document.getElementById('header-nav');
+const grilleAccueil = document.getElementById('grille-accueil');
 
 // Ajouter un écouteur d'événement pour le clic sur le burger
 burger.addEventListener('click', function() {
@@ -30,3 +31,32 @@ const observer = new IntersectionObserver((entries) => {
 const introContent = document.querySelector('.intro-content');
 observer.observe(introContent);
 
+
+// CHARGEMENT DES RECETTES SUR L'ACCUEIL
+fetch('assets/data/recettes.json')
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        // On prend uniquement les 6 premières recettes
+        const recettes = data.recettes.slice(0, 6);
+        
+        recettes.forEach(function(recette) {
+            const carte = document.createElement('article');
+            carte.className = 'recette-card';
+            
+            carte.innerHTML = `
+                <img src="assets${recette.images[0]}"
+                     alt="${recette.titre}"
+                     class="recette-image"
+                     onerror="this.src='assets/images/placeholder.jpg'">
+                <h3 class="recette-titre">${recette.titre}</h3>
+                <p class="recette-description">${recette.description}</p>
+                <a href="templates/recette_detail.html?slug=${recette.slug}" class="recette-lien" aria-label="Voir la recette : ${recette.titre}">
+                    Voir la recette
+                </a>
+            `;
+            
+            grilleAccueil.appendChild(carte);
+        });
+    });

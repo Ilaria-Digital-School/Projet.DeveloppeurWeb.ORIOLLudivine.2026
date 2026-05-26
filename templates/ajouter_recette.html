@@ -24,7 +24,12 @@
         <a href="../index.html" aria-label="Retour à l'accueil">
             <img class="logo" src="../assets/images/patissons-logo.svg" alt="Logo Pâtissons">
         </a>
-        <nav class="header-nav" aria-label="navigation principale">
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="header-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="header-nav" id="header-nav" aria-label="navigation principale">
             <a href="../index.html" aria-label="Revenir sur la page d'accueil">Accueil</a>
             <a href="recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
             <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
@@ -166,10 +171,15 @@
     </main>
 
     <footer class="footer" role="contentinfo">
-        <p>&copy; 2025 Pâtissons. Tous droits réservés.</p>
+        <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+        <nav class="footer-nav" aria-label="Navigation secondaire">
+            <a href="mentions_legales.html">Mentions légales</a>
+            <a href="contact.html">Contact</a>
+            <a href="accessibilite.html">Accessibilité</a>
+        </nav>
     </footer>
 
-    <!-- Lien vers le fichier JavaScript du Chatbot -->
     <script src="../assets/js/chatbot.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>
