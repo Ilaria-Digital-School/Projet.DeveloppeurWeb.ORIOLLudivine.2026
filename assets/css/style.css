@@ -282,6 +282,35 @@ body {
     min-height: 60px;
 
 }
+.badge {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.875rem;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+}
+
+.badge-facile {
+    border: 1px solid #B07A4A;
+    color: #7A4F28;
+    background: transparent;
+}
+
+.badge-intermediaire {
+    border: 1px solid #8C6E3F;
+    color: #5C4020;
+    background: #FAF5EE;
+}
+
+.badge-difficile {
+    border: 1px solid #2C1A0E;
+    color: #2C1A0E;
+    background: #F0E8DE;
+}
+
 /* ================================
    Recettes.html
    ================================ */   
@@ -437,6 +466,38 @@ body {
     content: "";
     position: absolute;
     inset: 0;        /* équivaut à top:0; right:0; bottom:0; left:0 */
+}
+
+/* === Wrapper image (pour positionner le cœur) === */
+.recette-image-wrapper {
+    position: relative;
+}
+
+/* === Bouton favori === */
+.btn-favori {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(253, 250, 246, 0.85);
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 1.1rem;
+    color: #B07A4A;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease;
+}
+
+.btn-favori:hover {
+    transform: scale(1.15);
+}
+
+.btn-favori.actif {
+    color: #D85A30;
 }
 
 /* ================================
@@ -948,6 +1009,36 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
 }
 
 /* ================================
+   FAVORIS
+   ================================ */
+
+.favoris-section {
+  max-width: 1200px;
+  margin: 30px 40px;
+  padding: 0 1rem;
+}
+
+.favoris-section h1 {
+  margin-bottom: 2rem;
+}
+
+/* Message "aucun favori" */
+.favoris-vides {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.favoris-vides__texte {
+  font-size: clamp(16px, 2vw, 20px);
+  font-style: italic;
+  color: #B07A4A;
+}
+
+/* ================================
    PAGES ÉDITORIALES
    (accessibilité, mentions légales)
    ================================ */
@@ -1181,5 +1272,10 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
     .detail-colonnes {
         grid-template-columns: 1fr;
     }
+
+    .favoris-section {
+    margin: 15px;
+    padding: 0;
+  }
 
 }
