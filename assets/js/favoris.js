@@ -6,7 +6,6 @@
 
 // ÉLÉMENTS DU DOM
 const grille        = document.getElementById('grille-favoris');
-const zoneFavorisVides = document.getElementById('favoris-vides');
 
 // ─────────────────────────────────────────
 //  FONCTIONS UTILITAIRES (copiées de recettes.js
@@ -36,13 +35,6 @@ function etoilesDifficulte(difficulte) {
 function afficherFavoris(recettes) {
   grille.innerHTML = '';
 
-  // Si la liste est vide → message d'invitation
-  if (recettes.length === 0) {
-    zoneFavorisVides.hidden = false;
-    return;
-  }
-
-  zoneFavorisVides.hidden = true;
 
   recettes.forEach(function (recette) {
     const carte = document.createElement('article');
@@ -100,10 +92,6 @@ function afficherFavoris(recettes) {
 
       setTimeout(function () {
         carte.remove();
-        // Si plus aucune carte → afficher le message vide
-        if (grille.querySelectorAll('.recette-card').length === 0) {
-          zoneFavorisVides.hidden = false;
-        }
       }, 300);
     });
   });

@@ -490,6 +490,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: transform 0.15s ease;
+    z-index: 1;
 }
 
 .btn-favori:hover {
@@ -1019,6 +1020,8 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
 }
 
 .favoris-section h1 {
+  text-align: center;
+  font-size: clamp(28px, 4vw, 50px);
   margin-bottom: 2rem;
 }
 

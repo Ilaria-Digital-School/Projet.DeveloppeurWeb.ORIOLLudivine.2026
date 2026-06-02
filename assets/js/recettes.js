@@ -102,7 +102,18 @@ fetch('../assets/data/recettes.json')
   })
   .then(function (data) {
     toutesLesRecettes = data.recettes;
-    afficherRecettes(toutesLesRecettes);
+
+    // Lit le paramètre "categorie" dans l'URL
+    const params = new URLSearchParams(window.location.search);
+    const categorieURL = params.get("categorie");
+
+    if (categorieURL) {
+        // Pré-remplit le <select> avec la catégorie reçue
+        selectCategorie.value = categorieURL;
+    }
+
+    // Filtre (ou affiche tout si pas de catégorie)
+    filtrerRecettes();
   })
   .catch(function (erreur) {
     console.error('Erreur de chargement :', erreur);

@@ -2,7 +2,6 @@
 
 const burger = document.getElementById("burger");
 const nav = document.getElementById("header-nav");
-const grilleAccueil = document.getElementById("grille-accueil");
 
 // Ajouter un écouteur d'événement pour le clic sur le burger
 burger.addEventListener("click", function () {
@@ -28,7 +27,9 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 const introContent = document.querySelector(".intro-content");
-observer.observe(introContent);
+if (introContent) {
+  observer.observe(introContent);
+}
 
 
 // Fonction utilitaire pour la classe CSS du badge difficulté
@@ -50,6 +51,8 @@ function etoilesDifficulte(difficulte) {
 }
 
 // CHARGEMENT DES RECETTES SUR L'ACCUEIL
+const grilleAccueil = document.getElementById("grille-accueil");
+if (grilleAccueil) {
 fetch("assets/data/recettes.json")
   .then(function (response) {
     return response.json();
@@ -85,5 +88,15 @@ fetch("assets/data/recettes.json")
       grilleAccueil.appendChild(carte);
     });
   });
+}
+
+// FILTRAGE PAR CATÉGORIE sur recettes.html
+// Lit le paramètre "categorie" dans l'URL et filtre les cartes affichées
+
+function getCategorieDepuisURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("categorie"); // ex: "cremes-curds-ganache" ou null
+}
+
 
 
