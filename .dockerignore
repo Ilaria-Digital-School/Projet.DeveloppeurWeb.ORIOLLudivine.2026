@@ -1,0 +1,8 @@
+node_modules/
+.git/
+.prettierignore
+.prettierrc
+package.json
+package-lock.json
+docker-compose.yml
+Dockerfile
