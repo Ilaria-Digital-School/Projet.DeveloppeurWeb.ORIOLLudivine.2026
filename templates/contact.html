@@ -1,112 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact - Pâtissons</title>
-    <meta name="description" content="Contactez l'équipe Pâtissons pour toute question ou suggestion.">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <meta
+      name="description"
+      content="Contactez l'équipe Pâtissons pour toute question ou suggestion."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header class="header" role="banner">
-        <a href="../index.html" aria-label="Retour à l'accueil">
-            <img class="logo" src="../assets/images/patissons-logo.svg" alt="Logo Pâtissons">
-        </a>
-        <button
-            class="burger"
-            id="burger"
-            aria-label="Ouvrir le menu"
-            aria-expanded="false"
-            aria-controls="header-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="header-nav" id="header-nav" aria-label="Navigation principale">
-            <a href="../index.html" aria-label="Retour à la page d'acceuil">Accueil</a>
-            <a href="recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
-            <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
-            <a href="connexion.html" aria-label="Se connecter ou s'inscrire">Connexion</a>
-            <a href="favoris.html" aria-label="Voir les recettes favorites">Favoris</a>
-        </nav>
+      <a href="../index.html">
+        <img
+          class="logo"
+          src="../assets/images/patissons-logo.svg"
+          alt="Logo Pâtissons"
+        />
+      </a>
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="header-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav
+        class="header-nav"
+        id="header-nav"
+        aria-label="Navigation principale"
+      >
+        <a href="../index.html" aria-label="Retour à la page d'acceuil"
+          >Accueil</a
+        >
+        <a href="recettes.html" aria-label="Voir toutes les recettes"
+          >Recettes</a
+        >
+        <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette"
+          >Ajouter une recette</a
+        >
+        <a href="connexion.html" aria-label="Se connecter ou s'inscrire"
+          >Connexion</a
+        >
+        <a href="favoris.html" aria-label="Voir les recettes favorites"
+          >Favoris</a
+        >
+      </nav>
     </header>
 
     <main>
-        <!-- Fil d'ariane -->
-        <nav aria-label="Fil d'ariane">
-            <ol>
-                <li><a href="../index.html" aria-label="Retour à la page d'acceuil">Accueil</a></li>
-                <li aria-current="page" aria-label="Page de contact">Contact</li>
-            </ol>
-        </nav>
+      <!-- Fil d'ariane -->
+      <nav aria-label="Fil d'ariane">
+        <ol>
+          <li>
+            <a href="../index.html" aria-label="Retour à la page d'acceuil"
+              >Accueil</a
+            >
+          </li>
+          <li aria-current="page" aria-label="Page de contact">Contact</li>
+        </ol>
+      </nav>
 
-        <section class="connexion-section" aria-label="Formulaire de contact">
-            <h1>Nous contacter</h1>
-            <p class="auth-description">
-                Une question, une suggestion, un problème ? <br>
-                Écrivez-nous, nous vous répondrons dans les plus brefs délais.
-            </p>
+      <section class="connexion-section" aria-label="Formulaire de contact">
+        <h1>Nous contacter</h1>
+        <p class="auth-description">
+          Une question, une suggestion, un problème ? <br />
+          Écrivez-nous, nous vous répondrons dans les plus brefs délais.
+        </p>
 
-            <form class="connexion-form" action="#" method="post" novalidate>
+        <form class="connexion-form" action="#" method="post" novalidate>
+          <div class="form-group">
+            <label for="nom">Nom <span aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              placeholder="Votre nom"
+              autocomplete="name"
+              required
+            />
+          </div>
 
-                <div class="form-group">
-                    <label for="nom">Nom <span aria-hidden="true">*</span></label>
-                    <input type="text" id="nom" name="nom"
-                           placeholder="Votre nom"
-                           autocomplete="name"
-                           required>
-                </div>
+          <div class="form-group">
+            <label for="email"
+              >Adresse e-mail <span aria-hidden="true">*</span></label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="votre@email.com"
+              autocomplete="email"
+              required
+            />
+          </div>
 
-                <div class="form-group">
-                    <label for="email">Adresse e-mail <span aria-hidden="true">*</span></label>
-                    <input type="email" id="email" name="email"
-                           placeholder="votre@email.com"
-                           autocomplete="email"
-                           required>
-                </div>
+          <div class="form-group">
+            <label for="sujet">Sujet <span aria-hidden="true">*</span></label>
+            <select id="sujet" name="sujet" required>
+              <option value="">Choisir un sujet</option>
+              <option value="question">Une question</option>
+              <option value="suggestion">Une suggestion</option>
+              <option value="probleme">Un problème technique</option>
+              <option value="recette">À propos d'une recette</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
 
-                <div class="form-group">
-                    <label for="sujet">Sujet <span aria-hidden="true">*</span></label>
-                    <select id="sujet" name="sujet" required>
-                        <option value="">Choisir un sujet</option>
-                        <option value="question">Une question</option>
-                        <option value="suggestion">Une suggestion</option>
-                        <option value="probleme">Un problème technique</option>
-                        <option value="recette">À propos d'une recette</option>
-                        <option value="autre">Autre</option>
-                    </select>
-                </div>
+          <div class="form-group">
+            <label for="message"
+              >Message <span aria-hidden="true">*</span></label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="Votre message…"
+              required
+            ></textarea>
+          </div>
 
-                <div class="form-group">
-                    <label for="message">Message <span aria-hidden="true">*</span></label>
-                    <textarea id="message" name="message"
-                              rows="6"
-                              placeholder="Votre message…"
-                              required></textarea>
-                </div>
+          <p class="form-obligatoire">
+            <span aria-hidden="true">*</span> Champs obligatoires
+          </p>
 
-                <p class="form-obligatoire"><span aria-hidden="true">*</span> Champs obligatoires</p>
-
-                <button type="submit">Envoyer le message</button>
-
-            </form>
-        </section>
+          <button type="submit">Envoyer le message</button>
+        </form>
+      </section>
     </main>
 
     <footer class="footer" role="contentinfo">
-        <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
-        <nav class="footer-nav" aria-label="Navigation secondaire">
-            <a href="mentions_legales.html" aria-label="Voir les mentions légales">Mentions légales</a>
-            <a href="contact.html" aria-label="Nous contacter">Contact</a>
-            <a href="accessibilite.html" aria-label="Voir la déclaration d'accessibilité">Accessibilité</a>
-        </nav>
+      <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+      <nav class="footer-nav" aria-label="Navigation secondaire">
+        <a href="mentions_legales.html" aria-label="Voir les mentions légales"
+          >Mentions légales</a
+        >
+        <a href="contact.html" aria-label="Nous contacter">Contact</a>
+        <a
+          href="accessibilite.html"
+          aria-label="Voir la déclaration d'accessibilité"
+          >Accessibilité</a
+        >
+      </nav>
     </footer>
 
     <script src="../assets/js/main.js"></script>
-</body>
-
+  </body>
 </html>

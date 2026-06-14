@@ -1,135 +1,187 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Toutes les recettes - Pâtissons</title>
-    <meta name="description"
-        content="Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !">
+    <meta
+      name="description"
+      content="Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !"
+    />
 
     <!-- Polices Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
-        rel="stylesheet">
-    
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header class="header" role="banner">
-        <a href="../index.html" aria-label="Retour à l'accueil">
-            <img class="logo" src="../assets/images/patissons-logo.svg" alt="Logo Pâtissons">
-        </a>
-        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="header-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="header-nav" id="header-nav" aria-label="navigation principale">
-            <a href="../index.html" aria-label="Revenir sur la page d'accueil">Accueil</a>
-            <a href="recettes.html" aria-current="page" aria-label="Voir toutes les recettes">Recettes</a>
-            <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
-            <a href="connexion.html" aria-label="Se connecter ou s'inscrire">Connexion</a>
-            <a href="favoris.html" aria-label="Voir mes favoris">Favoris</a>
-        </nav>
-    
+      <a href="../index.html">
+        <img
+          class="logo"
+          src="../assets/images/patissons-logo.svg"
+          alt="Logo Pâtissons"
+        />
+      </a>
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="header-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav
+        class="header-nav"
+        id="header-nav"
+        aria-label="navigation principale"
+      >
+        <a href="../index.html" aria-label="Revenir sur la page d'accueil"
+          >Accueil</a
+        >
+        <a
+          href="recettes.html"
+          aria-current="page"
+          aria-label="Voir toutes les recettes"
+          >Recettes</a
+        >
+        <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette"
+          >Ajouter une recette</a
+        >
+        <a href="connexion.html" aria-label="Se connecter ou s'inscrire"
+          >Connexion</a
+        >
+        <a href="favoris.html" aria-label="Voir mes favoris">Favoris</a>
+      </nav>
     </header>
 
     <main>
-    
-        <!-- Fil d'Ariane -->
-        <nav aria-label="Fil d'ariane">
-            <ol>
-                <li><a href="../index.html" aria-label="Retour à la page d'acceuil">Accueil</a></li>
-                <li aria-current="page" aria-label="Page de listing des recettes">Recettes</li>
-            </ol>
-        </nav>
-    
-        <div class="recettes-layout">
-            <aside class="filtres" aria-label="Filtres de recherche">
-        
-                <div class="filtre-groupe">
-                    <label for="recherche-principale">Rechercher une recette</label>
-                    <input type="search" id="recherche-principale" name="recherche" placeholder="Rechercher une recette...">
-                </div>
-        
-                <div class="filtre-groupe">
-                    <label for="categorie">Catégorie</label>
-                    <select name="categorie" id="categorie">
-                        <option value="">Toutes les catégories</option>
-                        <option value="cremes-curds-ganache">Crèmes, curds et ganache</option>
-                        <option value="pates-biscuits">Pâtes et biscuits</option>
-                        <option value="tartes-millefeuilles">Tartes et millefeuilles</option>
-                        <option value="entremets-gateaux-montes">Entremets et gâteaux montés</option>
-                        <option value="patisseries-individuelles">Pâtisseries individuelles</option>
-                        <option value="autres-gourmandises">Autres gourmandises</option>
-                    </select>
-                </div>
-        
-                <fieldset>
-                    <legend>Temps de préparation</legend>
-                    <label class="radio-ligne">
-                        <input type="radio" name="temps" value="moins30">
-                        <span aria-label="Moins de 30 minutes"></span>Moins de 30 min</span>
-                    </label>
-                    <label class="radio-ligne">
-                        <input type="radio" name="temps" value="moins1h">
-                        <span aria-label="Moins d'une heure"></span>Moins d'1h
-                    </label>
-                    <label class="radio-ligne">
-                        <input type="radio" name="temps" value="plus1h">
-                        <span aria-label="Plus d'une heure"></span>Plus d'1h
-                    </label>
-                </fieldset>
-        
-                <fieldset>
-                    <legend>Difficulté</legend>
-                    <label class="radio-ligne">
-                        <input type="radio" name="difficulte" value="facile">
-                        <span aria-label="Facile"></span>Facile
-                    </label>
-                    <label class="radio-ligne">
-                        <input type="radio" name="difficulte" value="intermediaire">
-                        <span aria-label="Intermédiaire"></span>Intermédiaire
-                    </label>
-                    <label class="radio-ligne">
-                        <input type="radio" name="difficulte" value="difficile">
-                        <span aria-label="Difficile"></span>Difficile
-                    </label>
-                </fieldset>
-        
-                <div class="filtre-groupe">
-                    <label for="recherche-ingredient">Filtrer par ingrédient</label>
-                    <input type="search" id="recherche-ingredient" name="ingredient"
-                        placeholder="Ex : fraises, citron, chocolat…" autocomplete="off">
-                </div>
-                <button id="btn-reset" type="button" class="btn-reset">
-                    Réinitialiser les filtres
-                </button>
-            </aside>
-    
-            <section class="resultats" aria-label="Résultats des recettes">
-                <h1>Résultats de la recherche</h1>
-                <div class="container_resultats" id="grille-recettes">
-                    <!-- Les cartes seront générées par le JS -->
-                </div>
-            </section>
-        </div>
-    
+      <!-- Fil d'Ariane -->
+      <nav aria-label="Fil d'ariane">
+        <ol>
+          <li>
+            <a href="../index.html" aria-label="Retour à la page d'acceuil"
+              >Accueil</a
+            >
+          </li>
+          <li aria-current="page" aria-label="Page de listing des recettes">
+            Recettes
+          </li>
+        </ol>
+      </nav>
+
+      <div class="recettes-layout">
+        <aside class="filtres" aria-label="Filtres de recherche">
+          <div class="filtre-groupe">
+            <label for="recherche-principale">Rechercher une recette</label>
+            <input
+              type="search"
+              id="recherche-principale"
+              name="recherche"
+              placeholder="Rechercher une recette..."
+            />
+          </div>
+
+          <div class="filtre-groupe">
+            <label for="categorie">Catégorie</label>
+            <select name="categorie" id="categorie">
+              <option value="">Toutes les catégories</option>
+              <option value="cremes-curds-ganache">
+                Crèmes, curds et ganache
+              </option>
+              <option value="pates-biscuits">Pâtes et biscuits</option>
+              <option value="tartes-millefeuilles">
+                Tartes et millefeuilles
+              </option>
+              <option value="entremets-gateaux-montes">
+                Entremets et gâteaux montés
+              </option>
+              <option value="patisseries-individuelles">
+                Pâtisseries individuelles
+              </option>
+              <option value="autres-gourmandises">Autres gourmandises</option>
+            </select>
+          </div>
+
+          <fieldset>
+            <legend>Temps de préparation</legend>
+            <label class="radio-ligne">
+              <input type="radio" name="temps" value="moins30" />
+              <span aria-label="Moins de 30 minutes">Moins de 30 min</span>
+            </label>
+            <label class="radio-ligne">
+              <input type="radio" name="temps" value="moins1h" />
+              <span aria-label="Moins d'une heure">Moins d'1h</span>
+            </label>
+            <label class="radio-ligne">
+              <input type="radio" name="temps" value="plus1h" />
+              <span aria-label="Plus d'une heure">Plus d'1h</span>
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Difficulté</legend>
+            <label class="radio-ligne">
+              <input type="radio" name="difficulte" value="facile" />
+              <span aria-label="Facile">Facile</span>
+            </label>
+            <label class="radio-ligne">
+              <input type="radio" name="difficulte" value="intermediaire" />
+              <span aria-label="Intermédiaire">Intermédiaire</span>
+            </label>
+            <label class="radio-ligne">
+              <input type="radio" name="difficulte" value="difficile" />
+              <span aria-label="Difficile">Difficile</span>
+            </label>
+          </fieldset>
+
+          <div class="filtre-groupe">
+            <label for="recherche-ingredient">Filtrer par ingrédient</label>
+            <input
+              type="search"
+              id="recherche-ingredient"
+              name="ingredient"
+              placeholder="Ex : fraises, citron, chocolat…"
+              autocomplete="off"
+            />
+          </div>
+          <button id="btn-reset" type="button" class="btn-reset">
+            Réinitialiser les filtres
+          </button>
+        </aside>
+
+        <section class="resultats" aria-label="Résultats des recettes">
+          <h1>Résultats de la recherche</h1>
+          <div class="container_resultats" id="grille-recettes">
+            <!-- Les cartes seront générées par le JS -->
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer class="footer" role="contentinfo">
-        <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
-        <nav class="footer-nav" aria-label="Navigation secondaire">
-            <a href="mentions_legales.html" aria-label="Voir les mentions légales">Mentions légales</a>
-            <a href="contact.html" aria-label="Nous contacter">Contact</a>
-            <a href="accessibilite.html" aria-label="Voir la déclaration d'accessibilité">Accessibilité</a>
-        </nav>
+      <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+      <nav class="footer-nav" aria-label="Navigation secondaire">
+        <a href="mentions_legales.html" aria-label="Voir les mentions légales"
+          >Mentions légales</a
+        >
+        <a href="contact.html" aria-label="Nous contacter">Contact</a>
+        <a
+          href="accessibilite.html"
+          aria-label="Voir la déclaration d'accessibilité"
+          >Accessibilité</a
+        >
+      </nav>
     </footer>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/recettes.js"></script>
-    </body>
+  </body>
 </html>

@@ -1,184 +1,295 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajouter une recette - Pâtissons</title>
-    <meta name="description"
-        content="Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !">
+    <meta
+      name="description"
+      content="Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !"
+    />
 
     <!-- Polices Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
-        rel="stylesheet">
-    
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header class="header" role="banner">
-        <a href="../index.html" aria-label="Retour à l'accueil">
-            <img class="logo" src="../assets/images/patissons-logo.svg" alt="Logo Pâtissons">
-        </a>
-        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="header-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="header-nav" id="header-nav" aria-label="navigation principale">
-            <a href="../index.html" aria-label="Revenir sur la page d'accueil">Accueil</a>
-            <a href="recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
-            <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
-            <a href="connexion.html" aria-label="Se connecter ou s'inscrire">Connexion</a>
-            <a href="favoris.html" aria-label="Voir les recettes favorites">Favoris</a>
-        </nav>
-
+      <a href="../index.html">
+        <img
+          class="logo"
+          src="../assets/images/patissons-logo.svg"
+          alt="Logo Pâtissons"
+        />
+      </a>
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="header-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav
+        class="header-nav"
+        id="header-nav"
+        aria-label="navigation principale"
+      >
+        <a href="../index.html" aria-label="Revenir sur la page d'accueil"
+          >Accueil</a
+        >
+        <a href="recettes.html" aria-label="Voir toutes les recettes"
+          >Recettes</a
+        >
+        <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette"
+          >Ajouter une recette</a
+        >
+        <a href="connexion.html" aria-label="Se connecter ou s'inscrire"
+          >Connexion</a
+        >
+        <a href="favoris.html" aria-label="Voir les recettes favorites"
+          >Favoris</a
+        >
+      </nav>
     </header>
 
     <main>
-        <!-- Fil d'Ariane -->
-        <nav aria-label="Fil d'ariane">
-            <ol>
-                <li><a href="../index.html" aria-label="Retour à la page d'acceuil">Accueil</a></li>
-                <li><a href="recettes.html" aria-label="Voir toutes les recettes">Recettes</a></li>
-                <li aria-current="page" aria-label="Page actuelle">Ajouter une recette</li>
-            </ol>
-        </nav>
+      <!-- Fil d'Ariane -->
+      <nav aria-label="Fil d'ariane">
+        <ol>
+          <li>
+            <a href="../index.html" aria-label="Retour à la page d'acceuil"
+              >Accueil</a
+            >
+          </li>
+          <li>
+            <a href="recettes.html" aria-label="Voir toutes les recettes"
+              >Recettes</a
+            >
+          </li>
+          <li aria-current="page" aria-label="Page actuelle">
+            Ajouter une recette
+          </li>
+        </ol>
+      </nav>
 
-       <section class="ajouter-recette" aria-label="Formulaire pour ajouter une nouvelle recette">
-            <h1>Ajouter une nouvelle recette</h1>
+      <section
+        class="ajouter-recette"
+        aria-label="Formulaire pour ajouter une nouvelle recette"
+      >
+        <h1>Ajouter une nouvelle recette</h1>
 
-            <form action="#" method="post" class="ajouter-recette-form" novalidate>
+        <form action="#" method="post" class="ajouter-recette-form" novalidate>
+          <!-- INFORMATIONS GÉNÉRALES -->
+          <fieldset>
+            <legend>Informations générales</legend>
 
-                <!-- INFORMATIONS GÉNÉRALES -->
-                <fieldset>
-                    <legend>Informations générales</legend>
+            <div class="form-group">
+              <label for="titre"
+                >Titre de la recette <span aria-hidden="true">*</span></label
+              >
+              <input
+                type="text"
+                id="titre"
+                name="titre"
+                placeholder="Ex : Tarte au citron meringuée"
+                required
+              />
+            </div>
 
-                    <div class="form-group">
-                        <label for="titre">Titre de la recette <span aria-hidden="true">*</span></label>
-                        <input type="text" id="titre" name="titre" 
-                               placeholder="Ex : Tarte au citron meringuée"
-                               required>
-                    </div>
+            <div class="form-group">
+              <label for="categorie"
+                >Catégorie <span aria-hidden="true">*</span></label
+              >
+              <select id="categorie" name="categorie" required>
+                <option value="">Choisir une catégorie</option>
+                <option value="cremes_curds_ganache">
+                  Crèmes, curds et ganache
+                </option>
+                <option value="pates_et_biscuits">Pâtes et biscuits</option>
+                <option value="tartes_et_millefeuilles">
+                  Tartes et millefeuilles
+                </option>
+                <option value="entremets_et_gateaux_montes">
+                  Entremets et gâteaux montés
+                </option>
+                <option value="patisseries_individuelles">
+                  Pâtisseries individuelles
+                </option>
+                <option value="autres_gourmandises">Autres gourmandises</option>
+              </select>
+            </div>
 
-                    <div class="form-group">
-                        <label for="categorie">Catégorie <span aria-hidden="true">*</span></label>
-                        <select id="categorie" name="categorie" required>
-                            <option value="">Choisir une catégorie</option>
-                            <option value="cremes_curds_ganache">Crèmes, curds et ganache</option>
-                            <option value="pates_et_biscuits">Pâtes et biscuits</option>
-                            <option value="tartes_et_millefeuilles">Tartes et millefeuilles</option>
-                            <option value="entremets_et_gateaux_montes">Entremets et gâteaux montés</option>
-                            <option value="patisseries_individuelles">Pâtisseries individuelles</option>
-                            <option value="autres_gourmandises">Autres gourmandises</option>
-                        </select>
-                    </div>
+            <div class="form-group">
+              <label for="description"
+                >Description <span aria-hidden="true">*</span></label
+              >
+              <textarea
+                id="description"
+                name="description"
+                rows="3"
+                placeholder="Décrivez votre recette en quelques mots…"
+                required
+              ></textarea>
+            </div>
+          </fieldset>
 
-                    <div class="form-group">
-                        <label for="description">Description <span aria-hidden="true">*</span></label>
-                        <textarea id="description" name="description" rows="3"
-                                  placeholder="Décrivez votre recette en quelques mots…"
-                                  required></textarea>
-                    </div>
-                </fieldset>
+          <!-- TEMPS ET DIFFICULTÉ -->
+          <fieldset>
+            <legend>Temps et difficulté</legend>
 
-                <!-- TEMPS ET DIFFICULTÉ -->
-                <fieldset>
-                    <legend>Temps et difficulté</legend>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="temps-preparation"
+                  >Temps de préparation (min)
+                  <span aria-hidden="true">*</span></label
+                >
+                <input
+                  type="number"
+                  id="temps-preparation"
+                  name="temps_preparation"
+                  min="1"
+                  max="999"
+                  placeholder="Ex : 30"
+                  required
+                />
+              </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="temps-preparation">Temps de préparation (min) <span aria-hidden="true">*</span></label>
-                            <input type="number" id="temps-preparation" name="temps_preparation" 
-                                   min="1" max="999" placeholder="Ex : 30" required>
-                        </div>
+              <div class="form-group">
+                <label for="temps-cuisson">Temps de cuisson (min)</label>
+                <input
+                  type="number"
+                  id="temps-cuisson"
+                  name="temps_cuisson"
+                  min="0"
+                  max="999"
+                  placeholder="0 si pas de cuisson"
+                />
+              </div>
 
-                        <div class="form-group">
-                            <label for="temps-cuisson">Temps de cuisson (min)</label>
-                            <input type="number" id="temps-cuisson" name="temps_cuisson" 
-                                   min="0" max="999" placeholder="0 si pas de cuisson">
-                        </div>
+              <div class="form-group">
+                <label for="portions"
+                  >Nombre de portions <span aria-hidden="true">*</span></label
+                >
+                <input
+                  type="number"
+                  id="portions"
+                  name="portions"
+                  min="1"
+                  max="99"
+                  placeholder="Ex : 8"
+                  required
+                />
+              </div>
+            </div>
 
-                        <div class="form-group">
-                            <label for="portions">Nombre de portions <span aria-hidden="true">*</span></label>
-                            <input type="number" id="portions" name="portions" 
-                                   min="1" max="99" placeholder="Ex : 8" required>
-                        </div>
-                    </div>
+            <div class="form-group">
+              <label>Difficulté <span aria-hidden="true">*</span></label>
+              <div class="radio-groupe">
+                <label class="radio-ligne">
+                  <input
+                    type="radio"
+                    name="difficulte"
+                    value="facile"
+                    required
+                  />
+                  Facile
+                </label>
+                <label class="radio-ligne">
+                  <input type="radio" name="difficulte" value="moyen" />
+                  Moyen
+                </label>
+                <label class="radio-ligne">
+                  <input type="radio" name="difficulte" value="difficile" />
+                  Difficile
+                </label>
+              </div>
+            </div>
+          </fieldset>
 
-                    <div class="form-group">
-                        <label>Difficulté <span aria-hidden="true">*</span></label>
-                        <div class="radio-groupe">
-                            <label class="radio-ligne">
-                                <input type="radio" name="difficulte" value="facile" required>
-                                Facile
-                            </label>
-                            <label class="radio-ligne">
-                                <input type="radio" name="difficulte" value="moyen">
-                                Moyen
-                            </label>
-                            <label class="radio-ligne">
-                                <input type="radio" name="difficulte" value="difficile">
-                                Difficile
-                            </label>
-                        </div>
-                    </div>
-                </fieldset>
+          <!-- INGRÉDIENTS -->
+          <fieldset>
+            <legend>Ingrédients</legend>
+            <div class="form-group">
+              <label for="ingredients"
+                >Liste des ingrédients <span aria-hidden="true">*</span></label
+              >
+              <textarea
+                id="ingredients"
+                name="ingredients"
+                rows="6"
+                placeholder="Ex :200g de farine&#10;3 œufs&#10;100g de beurre…"
+                required
+              ></textarea>
+              <span class="form-aide">Un ingrédient par ligne.</span>
+            </div>
+          </fieldset>
 
-                <!-- INGRÉDIENTS -->
-                <fieldset>
-                    <legend>Ingrédients</legend>
-                    <div class="form-group">
-                        <label for="ingredients">Liste des ingrédients <span aria-hidden="true">*</span></label>
-                        <textarea id="ingredients" name="ingredients" rows="6"
-                                  placeholder="Ex :200g de farine&#10;3 œufs&#10;100g de beurre…"
-                                  required></textarea>
-                        <span class="form-aide">Un ingrédient par ligne.</span>
-                    </div>
-                </fieldset>
+          <!-- ÉTAPES -->
+          <fieldset>
+            <legend>Étapes de préparation</legend>
+            <div class="form-group">
+              <label for="instructions"
+                >Instructions <span aria-hidden="true">*</span></label
+              >
+              <textarea
+                id="instructions"
+                name="instructions"
+                rows="8"
+                placeholder="Décrivez chaque étape clairement…"
+                required
+              ></textarea>
+              <span class="form-aide"
+                >Numérotez vos étapes pour plus de clarté.</span
+              >
+            </div>
+          </fieldset>
 
-                <!-- ÉTAPES -->
-                <fieldset>
-                    <legend>Étapes de préparation</legend>
-                    <div class="form-group">
-                        <label for="instructions">Instructions <span aria-hidden="true">*</span></label>
-                        <textarea id="instructions" name="instructions" rows="8"
-                                  placeholder="Décrivez chaque étape clairement…"
-                                  required></textarea>
-                        <span class="form-aide">Numérotez vos étapes pour plus de clarté.</span>
-                    </div>
-                </fieldset>
+          <!-- PHOTO -->
+          <fieldset>
+            <legend>Photo</legend>
+            <div class="form-group">
+              <label for="photo">Ajouter une photo</label>
+              <input type="file" id="photo" name="photo" accept="image/*" />
+              <span class="form-aide"
+                >Formats acceptés : JPG, PNG, WebP. 5 Mo maximum.</span
+              >
+            </div>
+          </fieldset>
 
-                <!-- PHOTO -->
-                <fieldset>
-                    <legend>Photo</legend>
-                    <div class="form-group">
-                        <label for="photo">Ajouter une photo</label>
-                        <input type="file" id="photo" name="photo" accept="image/*">
-                        <span class="form-aide">Formats acceptés : JPG, PNG, WebP. 5 Mo maximum.</span>
-                    </div>
-                </fieldset>
+          <p class="form-obligatoire">
+            <span aria-hidden="true">*</span> Champs obligatoires
+          </p>
 
-                <p class="form-obligatoire"><span aria-hidden="true">*</span> Champs obligatoires</p>
-
-                <button type="submit" class="hero-btn">Publier la recette</button>
-
-            </form>
-        </section>
+          <button type="submit" class="hero-btn">Publier la recette</button>
+        </form>
+      </section>
     </main>
 
     <footer class="footer" role="contentinfo">
-        <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
-        <nav class="footer-nav" aria-label="Navigation secondaire">
-            <a href="mentions_legales.html" aria-label="Voir les mentions légales">Mentions légales</a>
-            <a href="contact.html" aria-label="Nous contacter">Contact</a>
-            <a href="accessibilite.html" aria-label="Voir la déclaration d'accessibilité">Accessibilité</a>
-        </nav>
+      <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+      <nav class="footer-nav" aria-label="Navigation secondaire">
+        <a href="mentions_legales.html" aria-label="Voir les mentions légales"
+          >Mentions légales</a
+        >
+        <a href="contact.html" aria-label="Nous contacter">Contact</a>
+        <a
+          href="accessibilite.html"
+          aria-label="Voir la déclaration d'accessibilité"
+          >Accessibilité</a
+        >
+      </nav>
     </footer>
 
     <script src="../assets/js/main.js"></script>
-</body>
+  </body>
 </html>

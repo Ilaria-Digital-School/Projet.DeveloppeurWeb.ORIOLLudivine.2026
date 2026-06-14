@@ -31,42 +31,41 @@ if (introContent) {
   observer.observe(introContent);
 }
 
-
 // Fonction utilitaire pour la classe CSS du badge difficulté
 function classeDifficulte(difficulte) {
-    const d = difficulte.toLowerCase();
-    if (d === 'facile')    return 'badge-facile';
-    if (d === 'intermediaire')     return 'badge-intermediaire';
-    if (d === 'difficile') return 'badge-difficile';
-    return 'badge-intermediaire'; // valeur par défaut
+  const d = difficulte.toLowerCase();
+  if (d === "facile") return "badge-facile";
+  if (d === "intermediaire") return "badge-intermediaire";
+  if (d === "difficile") return "badge-difficile";
+  return "badge-intermediaire"; // valeur par défaut
 }
 
 // Fonction utilitaire pour les étoiles
 function etoilesDifficulte(difficulte) {
-    const d = difficulte.toLowerCase();
-    if (d === 'facile')    return '★☆☆';
-    if (d === 'intermediaire')     return '★★☆';
-    if (d === 'difficile') return '★★★';
-    return '★★☆';
+  const d = difficulte.toLowerCase();
+  if (d === "facile") return "★☆☆";
+  if (d === "intermediaire") return "★★☆";
+  if (d === "difficile") return "★★★";
+  return "★★☆";
 }
 
 // CHARGEMENT DES RECETTES SUR L'ACCUEIL
 const grilleAccueil = document.getElementById("grille-accueil");
 if (grilleAccueil) {
-fetch("assets/data/recettes.json")
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    const recettes = data.recettes.slice(0, 6);
+  fetch("assets/data/recettes.json")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      const recettes = data.recettes.slice(0, 6);
 
-    recettes.forEach(function (recette) {
-      const carte = document.createElement("article");
-      carte.className = "recette-card";
+      recettes.forEach(function (recette) {
+        const carte = document.createElement("article");
+        carte.className = "recette-card";
 
-      carte.innerHTML = `
+        carte.innerHTML = `
         <img src="assets${recette.images[0]}"
-             alt="${recette.titre}"
+             alt="Photo de ${recette.titre}"
              class="recette-image"
              onerror="this.src='assets/images/placeholder.jpg'">
         <h3 class="recette-titre">${recette.titre}</h3>
@@ -85,9 +84,9 @@ fetch("assets/data/recettes.json")
         </a>
       `;
 
-      grilleAccueil.appendChild(carte);
+        grilleAccueil.appendChild(carte);
+      });
     });
-  });
 }
 
 // FILTRAGE PAR CATÉGORIE sur recettes.html
@@ -97,6 +96,3 @@ function getCategorieDepuisURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get("categorie"); // ex: "cremes-curds-ganache" ou null
 }
-
-
-

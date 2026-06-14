@@ -1,77 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mes favoris - Pâtissons</title>
-    <meta name="description"
-        content="Retrouvez toutes vos recettes de pâtisserie sauvegardées en favoris sur Pâtissons.">
+    <meta
+      name="description"
+      content="Retrouvez toutes vos recettes de pâtisserie sauvegardées en favoris sur Pâtissons."
+    />
 
     <!-- Polices Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <header class="header" role="banner">
-        <a href="../index.html" aria-label="Retour à l'accueil">
-            <img class="logo" src="../assets/images/patissons-logo.svg" alt="Logo Pâtissons">
-        </a>
-        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="header-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="header-nav" id="header-nav" aria-label="navigation principale">
-            <a href="../index.html" aria-label="Revenir sur la page d'accueil">Accueil</a>
-            <a href="recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
-            <a href="favoris.html" aria-current="page" aria-label="Voir mes favoris">Mes favoris</a>
-            <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
-            <a href="connexion.html" aria-label="Se connecter ou s'inscrire">Connexion</a>
-        </nav>
+      <a href="../index.html">
+        <img
+          class="logo"
+          src="../assets/images/patissons-logo.svg"
+          alt="Logo Pâtissons"
+        />
+      </a>
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="header-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav
+        class="header-nav"
+        id="header-nav"
+        aria-label="navigation principale"
+      >
+        <a href="../index.html" aria-label="Revenir sur la page d'accueil"
+          >Accueil</a
+        >
+        <a href="recettes.html" aria-label="Voir toutes les recettes"
+          >Recettes</a
+        >
+        <a href="favoris.html" aria-current="page" aria-label="Voir mes favoris"
+          >Mes favoris</a
+        >
+        <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette"
+          >Ajouter une recette</a
+        >
+        <a href="connexion.html" aria-label="Se connecter ou s'inscrire"
+          >Connexion</a
+        >
+      </nav>
     </header>
 
     <main>
+      <!-- Fil d'Ariane -->
+      <nav aria-label="Fil d'ariane">
+        <ol>
+          <li>
+            <a href="../index.html" aria-label="Retour à la page d'acceuil"
+              >Accueil</a
+            >
+          </li>
+          <li aria-current="page" aria-label="Page de mes favoris">
+            Mes favoris
+          </li>
+        </ol>
+      </nav>
 
-        <!-- Fil d'Ariane -->
-        <nav aria-label="Fil d'ariane">
-            <ol>
-                <li><a href="../index.html" aria-label="Retour à la page d'acceuil">Accueil</a></li>
-                <li aria-current="page" aria-label="Page de mes favoris">Mes favoris</li>
-            </ol>
-        </nav>
+      <section class="favoris-section" aria-label="Mes recettes favorites">
+        <h1>Mes recettes favorites</h1>
 
-        <section class="favoris-section" aria-label="Mes recettes favorites">
-
-            <h1>Mes recettes favorites</h1>
-
-                       <!-- Grille des cartes favoris -->
-            <div class="container_resultats" id="grille-favoris">
-                <!-- Les cartes sont générées par favoris.js -->
-            </div>
-
-        </section>
-
+        <!-- Grille des cartes favoris -->
+        <div class="container_resultats" id="grille-favoris">
+          <!-- Les cartes sont générées par favoris.js -->
+        </div>
+      </section>
     </main>
 
     <footer class="footer" role="contentinfo">
-        <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
-        <nav class="footer-nav" aria-label="Navigation secondaire">
-            <a href="mentions_legales.html" aria-label="Voir les mentions légales">Mentions légales</a>
-            <a href="contact.html" aria-label="Nous contacter">Contact</a>
-            <a href="accessibilite.html" aria-label="Voir la déclaration d'accessibilité">Accessibilité</a>
-        </nav>
+      <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+      <nav class="footer-nav" aria-label="Navigation secondaire">
+        <a href="mentions_legales.html" aria-label="Voir les mentions légales"
+          >Mentions légales</a
+        >
+        <a href="contact.html" aria-label="Nous contacter">Contact</a>
+        <a
+          href="accessibilite.html"
+          aria-label="Voir la déclaration d'accessibilité"
+          >Accessibilité</a
+        >
+      </nav>
     </footer>
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/favoris.js"></script>
-
-</body>
+  </body>
 </html>

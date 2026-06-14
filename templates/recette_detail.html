@@ -1,93 +1,128 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Détail de la recette - Pâtissons</title>
-    <meta name="description"
-        content="Découvrez les détails de cette recette de pâtisserie sur Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !">
+    <meta
+      name="description"
+      content="Découvrez les détails de cette recette de pâtisserie sur Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !"
+    />
 
     <!-- Polices Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
-        rel="stylesheet">
-    
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header class="header" role="banner">
-        <a href="../index.html" aria-label="Retour à l'accueil">
-            <img class="logo" src="../assets/images/patissons-logo.svg" alt="Logo Pâtissons">
-        </a>
-        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="header-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="header-nav" id="header-nav" aria-label="navigation principale">
-            <a href="../index.html" aria-label="Revenir sur la page d'accueil">Accueil</a>
-            <a href="recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
-            <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
-            <a href="connexion.html" aria-label="Se connecter ou s'inscrire">Connexion</a>
-            <a href="favoris.html" aria-label="Voir mes favoris">Favoris</a>
-        </nav>
-
+      <a href="../index.html">
+        <img
+          class="logo"
+          src="../assets/images/patissons-logo.svg"
+          alt="Logo Pâtissons"
+        />
+      </a>
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="header-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav
+        class="header-nav"
+        id="header-nav"
+        aria-label="navigation principale"
+      >
+        <a href="../index.html" aria-label="Revenir sur la page d'accueil"
+          >Accueil</a
+        >
+        <a href="recettes.html" aria-label="Voir toutes les recettes"
+          >Recettes</a
+        >
+        <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette"
+          >Ajouter une recette</a
+        >
+        <a href="connexion.html" aria-label="Se connecter ou s'inscrire"
+          >Connexion</a
+        >
+        <a href="favoris.html" aria-label="Voir mes favoris">Favoris</a>
+      </nav>
     </header>
 
     <main>
-        <!-- Fil d'Ariane -->
-        <nav aria-label="Fil d'ariane">
-            <ol>
-                <li><a href="../index.html" aria-label="Retour à la page d'acceuil">Accueil</a></li>
-                <li><a href="recettes.html" aria-label="Voir toutes les recettes">Recettes</a></li>
-                <li aria-current="page" aria-label="Page de détail de la recette">Cheesecake vanille citron</li>
-            </ol>
-        </nav>
+      <!-- Fil d'Ariane -->
+      <nav aria-label="Fil d'ariane">
+        <ol>
+          <li>
+            <a href="../index.html" aria-label="Retour à la page d'acceuil"
+              >Accueil</a
+            >
+          </li>
+          <li>
+            <a href="recettes.html" aria-label="Voir toutes les recettes"
+              >Recettes</a
+            >
+          </li>
+          <li aria-current="page" aria-label="Page de détail de la recette">
+            Cheesecake vanille citron
+          </li>
+        </ol>
+      </nav>
 
-        <!-- Détail de la recette -->
-    <section class="recette-detail" aria-label="Détail de la recette">
-    
+      <!-- Détail de la recette -->
+      <section class="recette-detail" aria-label="Détail de la recette">
         <!-- EN-TÊTE -->
         <div class="detail-header">
-            <h1 id="detail-titre"></h1>
-            <div class="detail-meta" id="detail-meta"></div>
+          <h1 id="detail-titre"></h1>
+          <div class="detail-meta" id="detail-meta"></div>
         </div>
-    
+
         <!-- IMAGE -->
-        <img id="detail-image" class="recette-detail-image" src="" alt="">
-    
+        <img id="detail-image" class="recette-detail-image" src="" alt="" />
+
         <!-- DESCRIPTION -->
         <p class="detail-description" id="detail-description"></p>
-    
+
         <!-- CONTENU : ingrédients + étapes côte à côte -->
         <div class="detail-colonnes">
-            <div class="detail-ingredients">
-                <h2>Ingrédients</h2>
-                <ul id="detail-ingredients"></ul>
-            </div>
-            <div class="detail-etapes">
-                <h2>Étapes</h2>
-                <ol id="detail-etapes"></ol>
-            </div>
+          <div class="detail-ingredients">
+            <h2>Ingrédients</h2>
+            <ul id="detail-ingredients"></ul>
+          </div>
+          <div class="detail-etapes">
+            <h2>Étapes</h2>
+            <ol id="detail-etapes"></ol>
+          </div>
         </div>
-    
-    </section>
-        <footer class="footer" role="contentinfo">
-            <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
-            <nav class="footer-nav" aria-label="navigation secondaire">
-                <a href="mentions_legales.html" aria-label="Voir les mentions légales">Mentions légales</a>
-                <a href="contact.html" aria-label="Nous contacter">Contact</a>
-                <a href="accessibilite.html" aria-label="Voir la déclaration d'accessibilité">Accessibilité</a>
-            </nav>
-        </footer>
+      </section>
+      <footer class="footer" role="contentinfo">
+        <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+        <nav class="footer-nav" aria-label="navigation secondaire">
+          <a href="mentions_legales.html" aria-label="Voir les mentions légales"
+            >Mentions légales</a
+          >
+          <a href="contact.html" aria-label="Nous contacter">Contact</a>
+          <a
+            href="accessibilite.html"
+            aria-label="Voir la déclaration d'accessibilité"
+            >Accessibilité</a
+          >
+        </nav>
+      </footer>
     </main>
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/recette_detail.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,104 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accessibilité - Pâtissons</title>
-    <meta name="description" content="Déclaration d'accessibilité du site Pâtissons.">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <meta
+      name="description"
+      content="Déclaration d'accessibilité du site Pâtissons."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header class="header" role="banner">
-        <a href="../index.html" aria-label="Retour à l'accueil">
-            <img class="logo" src="../assets/images/patissons-logo.svg" alt="Logo Pâtissons">
-        </a>
-        <button
-            class="burger"
-            id="burger"
-            aria-label="Ouvrir le menu"
-            aria-expanded="false"
-            aria-controls="header-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav class="header-nav" id="header-nav" aria-label="Navigation principale">
-            <a href="../index.html" aria-label="Retour à la page d'acceuil">Accueil</a>
-            <a href="recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
-            <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
-            <a href="connexion.html" aria-label="Se connecter ou s'inscrire">Connexion</a>
-            <a href="favoris.html" aria-label="Voir les recettes favorites">Favoris</a>
-        </nav>
+      <a href="../index.html">
+        <img
+          class="logo"
+          src="../assets/images/patissons-logo.svg"
+          alt="Logo Pâtissons"
+        />
+      </a>
+      <button
+        class="burger"
+        id="burger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="header-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav
+        class="header-nav"
+        id="header-nav"
+        aria-label="Navigation principale"
+      >
+        <a href="../index.html" aria-label="Retour à la page d'acceuil"
+          >Accueil</a
+        >
+        <a href="recettes.html" aria-label="Voir toutes les recettes"
+          >Recettes</a
+        >
+        <a href="ajouter_recette.html" aria-label="Ajouter une nouvelle recette"
+          >Ajouter une recette</a
+        >
+        <a href="connexion.html" aria-label="Se connecter ou s'inscrire"
+          >Connexion</a
+        >
+        <a href="favoris.html" aria-label="Voir les recettes favorites"
+          >Favoris</a
+        >
+      </nav>
     </header>
 
     <main>
-        <!-- Fil d'ariane -->
-        <nav aria-label="Fil d'ariane">
-            <ol>
-                <li><a href="../index.html" aria-label="Retour à la page d'acceuil">Accueil</a></li>
-                <li aria-current="page" aria-label="Page d'accessibilité">Accessibilité</li>
-            </ol>
-        </nav>
+      <!-- Fil d'ariane -->
+      <nav aria-label="Fil d'ariane">
+        <ol>
+          <li>
+            <a href="../index.html" aria-label="Retour à la page d'acceuil"
+              >Accueil</a
+            >
+          </li>
+          <li aria-current="page" aria-label="Page d'accessibilité">
+            Accessibilité
+          </li>
+        </ol>
+      </nav>
 
-        <section class="page-editoriale" aria-label="Déclaration d'accessibilité">
-            <h1>Accessibilité</h1>
+      <section class="page-editoriale" aria-label="Déclaration d'accessibilité">
+        <h1>Accessibilité</h1>
 
-            <p class="page-intro">
-                Pâtissons s'engage à rendre son site accessible à toutes et à tous, conformément aux recommandations des <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.1 niveau AA.
-            </p>
+        <p class="page-intro">
+          Pâtissons s'engage à rendre son site accessible à toutes et à tous,
+          conformément aux recommandations des
+          <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.1
+          niveau AA.
+        </p>
 
-            <h2>Mesures prises</h2>
-            <ul>
-                <li>Structure HTML sémantique avec les balises appropriées (<code>header</code>, <code>main</code>, <code>nav</code>, <code>footer</code>, <code>article</code>)</li>
-                <li>Navigation au clavier possible sur l'ensemble du site</li>
-                <li>Attributs <code>aria-label</code> sur les éléments interactifs</li>
-                <li>Textes alternatifs sur toutes les images</li>
-                <li>Contrastes de couleurs respectant les normes WCAG AA</li>
-                <li>Mise en page responsive adaptée à tous les écrans</li>
-                <li>Fil d'ariane sur toutes les pages pour faciliter la navigation</li>
-            </ul>
+        <h2>Mesures prises</h2>
+        <ul>
+          <li>
+            Structure HTML sémantique avec les balises appropriées
+            (<code>header</code>, <code>main</code>, <code>nav</code>,
+            <code>footer</code>, <code>article</code>)
+          </li>
+          <li>Navigation au clavier possible sur l'ensemble du site</li>
+          <li>
+            Attributs <code>aria-label</code> sur les éléments interactifs
+          </li>
+          <li>Textes alternatifs sur toutes les images</li>
+          <li>Contrastes de couleurs respectant les normes WCAG AA</li>
+          <li>Mise en page responsive adaptée à tous les écrans</li>
+          <li>
+            Fil d'ariane sur toutes les pages pour faciliter la navigation
+          </li>
+        </ul>
 
-            <h2>Limites connues</h2>
-            <p>
-                Ce site est un projet en cours de développement. Certaines fonctionnalités peuvent ne pas être encore totalement accessibles. Nous travaillons à améliorer continuellement l'expérience de tous les utilisateurs.
-            </p>
+        <h2>Limites connues</h2>
+        <p>
+          Ce site est un projet en cours de développement. Certaines
+          fonctionnalités peuvent ne pas être encore totalement accessibles.
+          Nous travaillons à améliorer continuellement l'expérience de tous les
+          utilisateurs.
+        </p>
 
-            <h2>Nous contacter</h2>
-            <p>
-                Si vous rencontrez une difficulté d'accessibilité sur notre site, n'hésitez pas à nous le signaler via notre <a href="contact.html">page de contact</a>. Nous ferons notre possible pour vous apporter une réponse dans les meilleurs délais.
-            </p>
+        <h2>Nous contacter</h2>
+        <p>
+          Si vous rencontrez une difficulté d'accessibilité sur notre site,
+          n'hésitez pas à nous le signaler via notre
+          <a href="contact.html">page de contact</a>. Nous ferons notre possible
+          pour vous apporter une réponse dans les meilleurs délais.
+        </p>
 
-            <h2>Technologies utilisées</h2>
-            <ul>
-                <li>HTML5 sémantique</li>
-                <li>CSS3 avec media queries</li>
-                <li>JavaScript vanilla</li>
-            </ul>
+        <h2>Technologies utilisées</h2>
+        <ul>
+          <li>HTML5 sémantique</li>
+          <li>CSS3 avec media queries</li>
+          <li>JavaScript vanilla</li>
+        </ul>
 
-            <h2>Outils de test</h2>
-            <ul>
-                <li>Google Lighthouse</li>
-                <li>WAVE — Web Accessibility Evaluation Tool</li>
-                <li>axe DevTools</li>
-            </ul>
-
-        </section>
+        <h2>Outils de test</h2>
+        <ul>
+          <li>Google Lighthouse</li>
+          <li>WAVE — Web Accessibility Evaluation Tool</li>
+          <li>axe DevTools</li>
+        </ul>
+      </section>
     </main>
 
     <footer class="footer" role="contentinfo">
-        <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
-        <nav class="footer-nav" aria-label="Navigation secondaire">
-            <a href="mentions_legales.html" aria-label="Voir les mentions légales">Mentions légales</a>
-            <a href="contact.html" aria-label="Nous contacter">Contact</a>
-            <a href="accessibilite.html" aria-label="Voir la déclaration d'accessibilité">Accessibilité</a>
-        </nav>
+      <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+      <nav class="footer-nav" aria-label="Navigation secondaire">
+        <a href="mentions_legales.html" aria-label="Voir les mentions légales"
+          >Mentions légales</a
+        >
+        <a href="contact.html" aria-label="Nous contacter">Contact</a>
+        <a
+          href="accessibilite.html"
+          aria-label="Voir la déclaration d'accessibilité"
+          >Accessibilité</a
+        >
+      </nav>
     </footer>
 
     <script src="../assets/js/main.js"></script>
-</body>
-
+  </body>
 </html>

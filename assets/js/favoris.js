@@ -5,7 +5,7 @@
 // ============================================================
 
 // ÉLÉMENTS DU DOM
-const grille        = document.getElementById('grille-favoris');
+const grille = document.getElementById("grille-favoris");
 
 // ─────────────────────────────────────────
 //  FONCTIONS UTILITAIRES (copiées de recettes.js
@@ -14,18 +14,18 @@ const grille        = document.getElementById('grille-favoris');
 
 function classeDifficulte(difficulte) {
   const d = difficulte.toLowerCase();
-  if (d === 'facile')        return 'badge-facile';
-  if (d === 'intermediaire') return 'badge-intermediaire';
-  if (d === 'difficile')     return 'badge-difficile';
-  return 'badge-intermediaire';
+  if (d === "facile") return "badge-facile";
+  if (d === "intermediaire") return "badge-intermediaire";
+  if (d === "difficile") return "badge-difficile";
+  return "badge-intermediaire";
 }
 
 function etoilesDifficulte(difficulte) {
   const d = difficulte.toLowerCase();
-  if (d === 'facile')        return '★☆☆';
-  if (d === 'intermediaire') return '★★☆';
-  if (d === 'difficile')     return '★★★';
-  return '★★☆';
+  if (d === "facile") return "★☆☆";
+  if (d === "intermediaire") return "★★☆";
+  if (d === "difficile") return "★★★";
+  return "★★☆";
 }
 
 // ─────────────────────────────────────────
@@ -33,12 +33,11 @@ function etoilesDifficulte(difficulte) {
 // ─────────────────────────────────────────
 
 function afficherFavoris(recettes) {
-  grille.innerHTML = '';
-
+  grille.innerHTML = "";
 
   recettes.forEach(function (recette) {
-    const carte = document.createElement('article');
-    carte.className = 'recette-card';
+    const carte = document.createElement("article");
+    carte.className = "recette-card";
 
     carte.innerHTML = `
       <div class="recette-image-wrapper">
@@ -72,23 +71,25 @@ function afficherFavoris(recettes) {
   });
 
   // Écouteurs sur les boutons cœur : retirer un favori
-  document.querySelectorAll('.btn-favori').forEach(function (btn) {
-    btn.addEventListener('click', function (event) {
+  document.querySelectorAll(".btn-favori").forEach(function (btn) {
+    btn.addEventListener("click", function (event) {
       event.stopPropagation();
       event.preventDefault();
 
       const slug = btn.dataset.slug;
 
       // Mise à jour du localStorage
-      const favoris = JSON.parse(localStorage.getItem('favoris')) || [];
-      const nouveauxFavoris = favoris.filter(function (s) { return s !== slug; });
-      localStorage.setItem('favoris', JSON.stringify(nouveauxFavoris));
+      const favoris = JSON.parse(localStorage.getItem("favoris")) || [];
+      const nouveauxFavoris = favoris.filter(function (s) {
+        return s !== slug;
+      });
+      localStorage.setItem("favoris", JSON.stringify(nouveauxFavoris));
 
       // Suppression visuelle de la carte avec animation
-      const carte = btn.closest('.recette-card');
-      carte.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-      carte.style.opacity    = '0';
-      carte.style.transform  = 'scale(0.95)';
+      const carte = btn.closest(".recette-card");
+      carte.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+      carte.style.opacity = "0";
+      carte.style.transform = "scale(0.95)";
 
       setTimeout(function () {
         carte.remove();
@@ -101,13 +102,13 @@ function afficherFavoris(recettes) {
 //  CHARGEMENT ET FILTRAGE
 // ─────────────────────────────────────────
 
-fetch('../assets/data/recettes.json')
+fetch("../assets/data/recettes.json")
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
     // Lecture des slugs favoris dans localStorage
-    const slugsFavoris = JSON.parse(localStorage.getItem('favoris')) || [];
+    const slugsFavoris = JSON.parse(localStorage.getItem("favoris")) || [];
 
     // On garde uniquement les recettes dont le slug est dans les favoris
     const recettesFavorites = data.recettes.filter(function (recette) {

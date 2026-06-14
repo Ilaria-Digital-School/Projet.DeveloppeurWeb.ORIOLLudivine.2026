@@ -1,112 +1,175 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accueil Pâtissons</title>
-    <meta name="description"
-        content="Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !">
+    <meta
+      name="description"
+      content="Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !"
+    />
 
     <!-- Polices Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
-        rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header class="header" role="banner">
-        <a href="index.html" aria-label="Retour à l'accueil">
-            <img class="logo" src="assets/images/patissons-logo.svg" alt="Logo Pâtissons">    
-        </a>
+      <a href="index.html">
+        <img
+          class="logo"
+          src="assets/images/patissons-logo.svg"
+          alt="Logo Pâtissons"
+        />
+      </a>
 
-         <!-- BOUTON BURGER — visible uniquement sur mobile via CSS -->
-    <button 
-        class="burger" 
+      <!-- BOUTON BURGER — visible uniquement sur mobile via CSS -->
+      <button
+        class="burger"
         id="burger"
         aria-label="Ouvrir le menu"
         aria-expanded="false"
-        aria-controls="header-nav">
+        aria-controls="header-nav"
+      >
         <span></span>
         <span></span>
         <span></span>
-    </button>
-    
-        <nav class="header-nav" id="header-nav" aria-label="navigation principale">
-            <a href="index.html" aria-current="page">Accueil</a>
-            <a href="templates/recettes.html" aria-label="Voir toutes les recettes">Recettes</a>
-            <a href="templates/ajouter_recette.html" aria-label="Ajouter une nouvelle recette">Ajouter une recette</a>
-            <a href="templates/connexion.html" aria-label="Se connecter ou s'inscrire">Connexion</a>
-            <a href="templates/favoris.html" aria-label="Voir mes favoris">Favoris</a>
-        </nav>
+      </button>
+
+      <nav
+        class="header-nav"
+        id="header-nav"
+        aria-label="navigation principale"
+      >
+        <a href="templates/recettes.html" aria-label="Voir toutes les recettes"
+          >Recettes</a
+        >
+        <a
+          href="templates/ajouter_recette.html"
+          aria-label="Ajouter une nouvelle recette"
+          >Ajouter une recette</a
+        >
+        <a
+          href="templates/connexion.html"
+          aria-label="Se connecter ou s'inscrire"
+          >Connexion</a
+        >
+        <a href="templates/favoris.html" aria-label="Voir mes favoris"
+          >Favoris</a
+        >
+      </nav>
     </header>
 
     <main role="main">
-        <!-- Section hero -->
-        <section class="hero" aria-label="Présentation du site">
-            <div class="hero-content">
-                <h1>L'art de la pâtisserie <em>partagée.</em></h1>
-                <p>Site collaboratif. <br> Créé par des passionnés, pour des passionnés.</p>
+      <!-- Section hero -->
+      <section class="hero" aria-label="Présentation du site">
+        <div class="hero-content">
+          <h1>L'art de la pâtisserie <em>partagée.</em></h1>
+          <p>
+            Site collaboratif. <br />
+            Créé par des passionnés, pour des passionnés.
+          </p>
 
-            <!-- <a href="templates/recettes.html" class="hero-btn">Explorer les recettes</a> -->
-            </div>
-        </section>
+          <!-- <a href="templates/recettes.html" class="hero-btn">Explorer les recettes</a> -->
+        </div>
+      </section>
 
-        <!-- Section introduction -->
-        <section class="intro" aria-label="Introduction au site">
-            <div class="intro-content">
-                <h2>
-                    La pâtisserie française,<br>
-                    une tradition vivante.
-                </h2>
-                <p>
-                    Pâtissons réunit <em>passionnés et professionnels</em>  autour du même art. <br> Ici, les recettes se transmettent, se partagent,
-                    s'enrichissent. <br> Toutes les recettes sont <em>testées et approuvées</em> par notre communauté, pour garantir des résultats délicieux à chaque bouchée.
-                </p>
-            </div>
-        </section>
+      <!-- Section introduction -->
+      <section class="intro" aria-label="Introduction au site">
+        <div class="intro-content">
+          <h2>
+            La pâtisserie française,<br />
+            une tradition vivante.
+          </h2>
+          <p>
+            Pâtissons réunit <em>passionnés et professionnels</em> autour du
+            même art. <br />
+            Ici, les recettes se transmettent, se partagent, s'enrichissent.
+            <br />
+            Toutes les recettes sont <em>testées et approuvées</em> par notre
+            communauté, pour garantir des résultats délicieux à chaque bouchée.
+          </p>
+        </div>
+      </section>
 
-        <!-- Section catégories -->
-        <section class="categories" aria-label="Recherche par catégories">
-            <h2>Recherche par catégories</h2>
-            <ul class="categories__liste">
-                <li><a href="templates/recettes.html?categorie=cremes-curds-ganache" data-categorie="cremes-curds-ganache" class="categories__lien">Crèmes, curds et
-                        ganache</a></li>
-                <li><a href="templates/recettes.html?categorie=pates-biscuits" data-categorie="pates-biscuits" class="categories__lien">Pâtes et biscuits</a>
-                </li>
-                <li><a href="templates/recettes.html?categorie=tartes-millefeuilles" data-categorie="tartes-millefeuilles" class="categories__lien">Tartes et
-                        millefeuilles</a></li>
-                <li><a href="templates/recettes.html?categorie=entremets-gateaux-montes" data-categorie="entremets-gateaux-montes" class="categories__lien">Entremets
-                        et gâteaux montés</a></li>
-                <li><a href="templates/recettes.html?categorie=patisseries-individuelles" data-categorie="patisseries-individuelles" class="categories__lien">Pâtisseries
-                        individuelles</a></li>
-                <li><a href="templates/recettes.html?categorie=autres-gourmandises" data-categorie="autres-gourmandises" class="categories__lien">Autres
-                        gourmandises</a></li>
-            </ul>
-        </section>
-        <!-- Toutes les recettes -->
-        <section aria-label="Toutes les recettes">
-            <h2 id="titre-resultats">Toutes les recettes</h2>
-            <div class="container" id="grille-accueil">
-                <!-- Les cartes seront générées par le JS -->
-            </div>
-        </section>
+      <!-- Section catégories -->
+      <section class="categories" aria-label="Recherche par catégories">
+        <h2>Recherche par catégories</h2>
+        <ul class="categories__liste">
+          <li>
+            <a
+              href="templates/recettes.html?categorie=cremes-curds-ganache"
+              data-categorie="cremes-curds-ganache"
+              class="categories__lien"
+              >Crèmes, curds et ganache</a
+            >
+          </li>
+          <li>
+            <a
+              href="templates/recettes.html?categorie=pates-biscuits"
+              data-categorie="pates-biscuits"
+              class="categories__lien"
+              >Pâtes et biscuits</a
+            >
+          </li>
+          <li>
+            <a
+              href="templates/recettes.html?categorie=tartes-millefeuilles"
+              data-categorie="tartes-millefeuilles"
+              class="categories__lien"
+              >Tartes et millefeuilles</a
+            >
+          </li>
+          <li>
+            <a
+              href="templates/recettes.html?categorie=entremets-gateaux-montes"
+              data-categorie="entremets-gateaux-montes"
+              class="categories__lien"
+              >Entremets et gâteaux montés</a
+            >
+          </li>
+          <li>
+            <a
+              href="templates/recettes.html?categorie=patisseries-individuelles"
+              data-categorie="patisseries-individuelles"
+              class="categories__lien"
+              >Pâtisseries individuelles</a
+            >
+          </li>
+          <li>
+            <a
+              href="templates/recettes.html?categorie=autres-gourmandises"
+              data-categorie="autres-gourmandises"
+              class="categories__lien"
+              >Autres gourmandises</a
+            >
+          </li>
+        </ul>
+      </section>
+      <!-- Toutes les recettes -->
+      <section aria-label="Toutes les recettes">
+        <h2 id="titre-resultats">Toutes les recettes</h2>
+        <div class="container" id="grille-accueil">
+          <!-- Les cartes seront générées par le JS -->
+        </div>
+      </section>
     </main>
-        <footer class="footer" role="contentinfo">
-            <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
-            <nav class ="footer-nav" aria-label="navigation secondaire">
-                <a href="templates/mentions_legales.html">Mentions légales</a>
-                <a href="templates/contact.html">Contact</a>
-                <a href="templates/accessibilite.html">Accessibilité</a>
-            </nav>
-        </footer>
+    <footer class="footer" role="contentinfo">
+      <p>&copy; 2026 Pâtissons. Tous droits réservés.</p>
+      <nav class="footer-nav" aria-label="navigation secondaire">
+        <a href="templates/mentions_legales.html">Mentions légales</a>
+        <a href="templates/contact.html">Contact</a>
+        <a href="templates/accessibilite.html">Accessibilité</a>
+      </nav>
+    </footer>
 
     <!-- Lien vers le fichier JavaScript principal -->
     <script src="assets/js/main.js"></script>
-   </body>
-
+  </body>
 </html>

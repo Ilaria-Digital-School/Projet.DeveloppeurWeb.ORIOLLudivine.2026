@@ -133,14 +133,9 @@
         "frais",
         "été"
       ],
-      "saison_conseillee": [
-        "Printemps",
-        "Été"
-      ],
+      "saison_conseillee": ["Printemps", "Été"],
       "statut": "publié",
-      "images": [
-        "/images/cheesecake-citron-vert-vanille.jpg"
-      ]
+      "images": ["/images/cheesecake-citron-vert-vanille.jpg"]
     },
     {
       "id": 2,
@@ -308,18 +303,9 @@
           "texte": "Le baba peut être servi avec une chantilly, une crème pâtissière ou une ganache montée selon l'occasion."
         }
       ],
-      "tags": [
-        "baba",
-        "pâte levée",
-        "beurre",
-        "rhum",
-        "sirop",
-        "technique"
-      ],
+      "tags": ["baba", "pâte levée", "beurre", "rhum", "sirop", "technique"],
       "statut": "publié",
-      "images": [
-        "/images/pate-a-baba.jpg"
-      ]
+      "images": ["/images/pate-a-baba.jpg"]
     },
     {
       "id": 3,
@@ -445,13 +431,9 @@
         "jaunes",
         "crème"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 4,
@@ -577,13 +559,9 @@
         "moelleux",
         "blancs d'œufs"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 5,
@@ -665,21 +643,10 @@
           "texte": "La génoise seule est peu sucrée et peu grasse — elle est faite pour être garnie, imbibée et assemblée. Elle se conserve 24h bien emballée à température ambiante, ou se congèle très bien une fois froide."
         }
       ],
-      "tags": [
-        "génoise",
-        "biscuit",
-        "base",
-        "entremet",
-        "bûche",
-        "classique"
-      ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "tags": ["génoise", "biscuit", "base", "entremet", "bûche", "classique"],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 6,
@@ -782,13 +749,9 @@
         "entremet",
         "base"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 7,
@@ -918,13 +881,9 @@
         "base",
         "classique"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 8,
@@ -1035,20 +994,10 @@
           "texte": "Le craquelin se conserve plusieurs semaines au congélateur entre deux feuilles de papier sulfurisé. Pratique de l'avoir toujours en réserve."
         }
       ],
-      "tags": [
-        "craquelin",
-        "pâte à choux",
-        "chou",
-        "croustillant",
-        "base"
-      ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "tags": ["craquelin", "pâte à choux", "chou", "croustillant", "base"],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 9,
@@ -1172,13 +1121,9 @@
         "entremet",
         "beurre"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 10,
@@ -1276,14 +1221,9 @@
         "garniture",
         "entremet"
       ],
-      "saison_conseillee": [
-        "Automne",
-        "Hiver"
-      ],
+      "saison_conseillee": ["Automne", "Hiver"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 11,
@@ -1301,12 +1241,7 @@
         "repos_min": 240,
         "total_min": 270
       },
-      "materiel": [
-        "Casserole",
-        "Fouet",
-        "Thermomètre",
-        "Mixeur plongeant"
-      ],
+      "materiel": ["Casserole", "Fouet", "Thermomètre", "Mixeur plongeant"],
       "ingredients": [
         {
           "groupe": "Crémeux vanille",
@@ -1390,20 +1325,10 @@
           "texte": "La température de 30°C est celle à laquelle le crémeux est fluide mais commence à épaissir, ce qui permet un glaçage net qui se fige rapidement sur un entrement froid."
         }
       ],
-      "tags": [
-        "crémeux",
-        "vanille",
-        "chocolat blanc",
-        "garniture",
-        "entremet"
-      ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "tags": ["crémeux", "vanille", "chocolat blanc", "garniture", "entremet"],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 12,
@@ -1522,14 +1447,9 @@
         "exotique",
         "garniture"
       ],
-      "saison_conseillee": [
-        "Printemps",
-        "Été"
-      ],
+      "saison_conseillee": ["Printemps", "Été"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 13,
@@ -1633,14 +1553,9 @@
         "garniture",
         "tarte"
       ],
-      "saison_conseillee": [
-        "Printemps",
-        "Été"
-      ],
+      "saison_conseillee": ["Printemps", "Été"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 14,
@@ -1734,13 +1649,9 @@
         "base",
         "classique"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 15,
@@ -1849,13 +1760,9 @@
         "vacherin",
         "base"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 16,
@@ -1957,20 +1864,10 @@
           "texte": "La même recette fonctionne avec des noisettes, des amandes, des pistaches ou un mélange. Pour un praliné 50/50 classique, utiliser moitié noisettes moitié amandes."
         }
       ],
-      "tags": [
-        "praliné",
-        "noix de pécan",
-        "caramel",
-        "garniture",
-        "base"
-      ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "tags": ["praliné", "noix de pécan", "caramel", "garniture", "base"],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/praline-pecan.jpg"
-      ]
+      "images": ["/images/praline-pecan.jpg"]
     },
     {
       "id": 17,
@@ -2077,13 +1974,9 @@
         "entremet",
         "professionnel"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 18,
@@ -2172,14 +2065,9 @@
         "finition",
         "bûche"
       ],
-      "saison_conseillee": [
-        "Automne",
-        "Hiver"
-      ],
+      "saison_conseillee": ["Automne", "Hiver"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 19,
@@ -2279,14 +2167,9 @@
         "spectaculaire",
         "sans farine"
       ],
-      "saison_conseillee": [
-        "Printemps",
-        "Été"
-      ],
+      "saison_conseillee": ["Printemps", "Été"],
       "statut": "publié",
-      "images": [
-        "/images/pavlova.jpg"
-      ]
+      "images": ["/images/pavlova.jpg"]
     },
     {
       "id": 20,
@@ -2408,14 +2291,9 @@
         "noël",
         "beurre"
       ],
-      "saison_conseillee": [
-        "Automne",
-        "Hiver"
-      ],
+      "saison_conseillee": ["Automne", "Hiver"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 21,
@@ -2527,13 +2405,9 @@
         "biscuit",
         "dégustation"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/tuile-amandes.jpg"
-      ]
+      "images": ["/images/tuile-amandes.jpg"]
     },
     {
       "id": 22,
@@ -2631,13 +2505,9 @@
         "sauce",
         "classique"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 23,
@@ -2742,13 +2612,9 @@
         "décor",
         "streusel"
       ],
-      "saison_conseillee": [
-        "Toute l'année"
-      ],
+      "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": [
-        "/images/hero-patissons.jpg"
-      ]
+      "images": ["/images/hero-patissons.jpg"]
     },
     {
       "id": 24,
@@ -2962,14 +2828,9 @@
         "imbibage",
         "festif"
       ],
-      "saison_conseillee": [
-        "Printemps",
-        "Été"
-      ],
+      "saison_conseillee": ["Printemps", "Été"],
       "statut": "publié",
-      "images": [
-        "/images/baba-caipi.jpg"
-      ]
+      "images": ["/images/baba-caipi.jpg"]
     },
     {
       "id": 25,
@@ -3199,14 +3060,9 @@
         "croustillant",
         "individuel"
       ],
-      "saison_conseillee": [
-        "Automne",
-        "Hiver"
-      ],
+      "saison_conseillee": ["Automne", "Hiver"],
       "statut": "publié",
-      "images": [
-        "/images/finger-praline.jpg"
-      ]
+      "images": ["/images/finger-praline.jpg"]
     }
   ]
 }
