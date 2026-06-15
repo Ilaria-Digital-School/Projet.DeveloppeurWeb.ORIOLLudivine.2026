@@ -1,5 +1,5 @@
 // ============================================================
-//  favoris.js — Page "Mes favoris" (Bloc 1 — JS vanilla)
+//  favoris.js — Page "Mes favoris" 
 //  Lit les slugs sauvegardés dans localStorage,
 //  charge recettes.json, puis affiche uniquement les favoris.
 // ============================================================
@@ -7,10 +7,9 @@
 // ÉLÉMENTS DU DOM
 const grille = document.getElementById("grille-favoris");
 
-// ─────────────────────────────────────────
-//  FONCTIONS UTILITAIRES (copiées de recettes.js
-//  pour que favoris.js soit autonome)
-// ─────────────────────────────────────────
+
+//  FONCTIONS UTILITAIRES (copiées de recettes.js pour que favoris.js soit autonome)
+
 
 function classeDifficulte(difficulte) {
   const d = difficulte.toLowerCase();
@@ -28,9 +27,7 @@ function etoilesDifficulte(difficulte) {
   return "★★☆";
 }
 
-// ─────────────────────────────────────────
-//  AFFICHAGE DES CARTES
-// ─────────────────────────────────────────
+// AFFICHAGE DES CARTES
 
 function afficherFavoris(recettes) {
   grille.innerHTML = "";
@@ -98,9 +95,7 @@ function afficherFavoris(recettes) {
   });
 }
 
-// ─────────────────────────────────────────
 //  CHARGEMENT ET FILTRAGE
-// ─────────────────────────────────────────
 
 fetch("../assets/data/recettes.json")
   .then(function (response) {

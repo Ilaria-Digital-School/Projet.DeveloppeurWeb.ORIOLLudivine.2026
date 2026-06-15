@@ -2,7 +2,6 @@
   "name": "bloc-1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "format": "prettier --write .",
     "format:check": "prettier --check ."
