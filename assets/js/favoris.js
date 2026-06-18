@@ -1,5 +1,5 @@
 // ============================================================
-//  favoris.js — Page "Mes favoris" 
+//  favoris.js — Page "Mes favoris"
 //  Lit les slugs sauvegardés dans localStorage,
 //  charge recettes.json, puis affiche uniquement les favoris.
 // ============================================================
@@ -7,9 +7,7 @@
 // ÉLÉMENTS DU DOM
 const grille = document.getElementById("grille-favoris");
 
-
 //  FONCTIONS UTILITAIRES (copiées de recettes.js pour que favoris.js soit autonome)
-
 
 function classeDifficulte(difficulte) {
   const d = difficulte.toLowerCase();
