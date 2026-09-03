@@ -11,6 +11,9 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
+from flask_cors import CORS
+
+CORS(app, origins=["http://localhost:5173"])
 
 # --- Configuration MySQL ---
 app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST")
