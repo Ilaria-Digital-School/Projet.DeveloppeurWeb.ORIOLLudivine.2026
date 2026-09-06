@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 90" width="400" height="90">
+  <defs>
+    <linearGradient id="degrade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#2C1A0E"/>
+      <stop offset="60%"  stop-color="#B07A4A"/>
+      <stop offset="100%" stop-color="#D4A86A"/>
+    </linearGradient>
+  </defs>
+
+  <text
+    x="20"
+    y="58"
+    font-family="Cormorant Garamond, Georgia, serif"
+    font-style="italic"
+    font-weight="300"
+    font-size="58"
+    letter-spacing="2"
+    fill="url(#degrade)">Pâtissons</text>
+
+  <text
+    x="22"
+    y="78"
+    font-family="Cormorant Garamond, Georgia, serif"
+    font-style="normal"
+    font-weight="300"
+    font-size="11"
+    letter-spacing="5"
+    fill="#B07A4A">RECETTES &amp; SAVOIR-FAIRE</text>
+</svg>
