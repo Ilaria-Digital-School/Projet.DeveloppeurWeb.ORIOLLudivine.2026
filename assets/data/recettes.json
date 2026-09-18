@@ -433,7 +433,7 @@
       ],
       "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": ["/images/hero-patissons.jpg"]
+      "images": ["/images/cremebrulee.png"]
     },
     {
       "id": 4,
@@ -561,7 +561,7 @@
       ],
       "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": ["/images/hero-patissons.jpg"]
+      "images": ["/images/financiernoisette.png"]
     },
     {
       "id": 5,
@@ -646,7 +646,7 @@
       "tags": ["génoise", "biscuit", "base", "entremet", "bûche", "classique"],
       "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": ["/images/hero-patissons.jpg"]
+      "images": ["/images/genoise.png"]
     },
     {
       "id": 6,
@@ -751,7 +751,7 @@
       ],
       "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": ["/images/hero-patissons.jpg"]
+      "images": ["/images/dacquoise.png"]
     },
     {
       "id": 7,
@@ -883,7 +883,7 @@
       ],
       "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": ["/images/hero-patissons.jpg"]
+      "images": ["/images/patechoux.png"]
     },
     {
       "id": 8,
@@ -1123,7 +1123,7 @@
       ],
       "saison_conseillee": ["Toute l'année"],
       "statut": "publié",
-      "images": ["/images/hero-patissons.jpg"]
+      "images": ["/images/sablebreton .png"]
     },
     {
       "id": 10,
