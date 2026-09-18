@@ -1,0 +1,33 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Palette Pâtissons */
+:root {
+  --color-brun-fonce: #31190c;
+  --color-brun-moyen: #7a4f28;
+  --color-terracotta: #b84f32;
+  --color-terracotta-clair: #dd8d47;
+  --color-orange-vif: #e0700e;
+  --color-beige-fond: #ede0cc;
+  --color-beige-clair: #f3eade;
+  --color-bordure: #e8d5c0;
+  --color-blanc-casse: #fdfaf6;
+
+  --color-background: var(--color-beige-fond);
+  --color-text: var(--color-brun-fonce);
+  --color-heading: var(--color-brun-fonce);
+  --color-border: var(--color-bordure);
+}
+
+body {
+  font-weight: 300;
+  font-style: normal;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
