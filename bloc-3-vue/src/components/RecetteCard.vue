@@ -1,9 +1,21 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   recette: {
     type: Object,
     required: true,
   },
+})
+
+// "Intermédiaire" donne "badge-intermediaire" (sans accent, pour correspondre au CSS)
+const classeBadge = computed(() => {
+  const difficulte = props.recette.difficulte ?? ''
+  const sansAccent = difficulte
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+  return `badge-${sansAccent}`
 })
 </script>
 
@@ -14,10 +26,10 @@ defineProps({
     :class="{ 'sans-image': !recette.image }"
   >
     <img v-if="recette.image" :src="recette.image" :alt="recette.titre" class="recette-image" />
-    <span class="badge" :class="`badge-${recette.difficulte.toLowerCase()}`">
+    <p class="recette-titre">{{ recette.titre }}</p>
+    <span class="badge" :class="classeBadge">
       {{ recette.difficulte }}
     </span>
-    <p class="recette-titre">{{ recette.titre }}</p>
     <p class="recette-description">{{ recette.description }}</p>
   </RouterLink>
 </template>
@@ -55,7 +67,29 @@ defineProps({
   display: block;
 }
 
-.recette-titre,
+/* Titre : bandeau chocolat, comme une étiquette de pâtisserie */
+.recette-titre {
+  display: flex;
+  align-items: center;
+  min-height: 5.75rem;
+  margin: 0;
+  padding: 16px 18px;
+  background: #31190c;
+  border-top: 3px solid #b84f32;
+  color: #fdfaf6;
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  transition: background-color 0.25s ease;
+}
+
+.recette-card:hover .recette-titre {
+  background: #b84f32;
+}
+
 .recette-description {
   padding: 10px 15px;
   color: #31190c;

@@ -76,6 +76,17 @@ function supprimerEtape(index) {
   etapes.value.splice(index, 1)
 }
 
+// Conseils (facultatifs) : une liste de { titre, texte }
+const conseils = ref([])
+
+function ajouterConseil() {
+  conseils.value.push({ titre: '', texte: '' })
+}
+
+function supprimerConseil(index) {
+  conseils.value.splice(index, 1)
+}
+
 // "Tarte au citron" devient "tarte-au-citron" (sans accents, sans majuscules)
 function creerSlug(texte) {
   return texte
@@ -99,8 +110,24 @@ function reinitialiserFormulaire() {
   slugConserve.value = ''
   groupes.value = [{ nom: '', items: [{ nom: '', quantite: null, unite: '' }] }]
   etapes.value = [{ titre: '', description: '' }]
+  conseils.value = []
   erreur.value = null
   erreurChargement.value = null
+}
+
+// Le champ conseils est stocké en texte JSON : [{ "titre": "...", "texte": "..." }]
+function lireConseils(brut) {
+  if (!brut) return []
+  try {
+    const liste = JSON.parse(brut)
+    if (Array.isArray(liste)) {
+      return liste.map((c) => ({ titre: c.titre ?? '', texte: c.texte ?? '' }))
+    }
+  } catch (err) {
+    console.error('Impossible de lire les conseils :', err)
+  }
+  // Format inattendu : on garde le contenu tel quel dans un seul conseil
+  return [{ titre: '', texte: String(brut) }]
 }
 
 // En modification : on récupère la recette et on remplit le formulaire avec ses données
@@ -146,6 +173,8 @@ async function chargerRecette(id) {
         .sort((a, b) => a.ordre - b.ordre)
         .map((e) => ({ titre: e.titre, description: e.description }))
     }
+
+    conseils.value = lireConseils(r.conseils)
   } catch (err) {
     console.error(err)
     erreurChargement.value = 'Impossible de charger cette recette.'
@@ -186,7 +215,17 @@ function construirePayload(slug) {
         titre: e.titre.trim() || `Étape ${index + 1}`,
         description: e.description.trim(),
       })),
+    // Le champ conseils de l'API est un texte : on y met la liste au format JSON
+    conseils: construireConseils(),
   }
+}
+
+function construireConseils() {
+  const remplis = conseils.value.filter((c) => c.texte.trim() !== '')
+  if (remplis.length === 0) return null
+  return JSON.stringify(
+    remplis.map((c) => ({ titre: c.titre.trim() || 'Conseil', texte: c.texte.trim() })),
+  )
 }
 
 async function envoyer() {
@@ -450,6 +489,47 @@ watch(
           <button type="button" class="btn-ajouter" @click="ajouterEtape">Ajouter une étape</button>
         </fieldset>
 
+        <!-- CONSEILS -->
+        <fieldset>
+          <legend>Conseils</legend>
+
+          <p class="form-aide aide-fieldset">
+            Facultatif. Astuces de réalisation, conservation, variantes…
+          </p>
+
+          <div v-for="(conseil, index) in conseils" :key="index" class="etape-bloc">
+            <div class="etape-entete">
+              <span class="etape-numero" aria-hidden="true">{{ index + 1 }}</span>
+              <p class="etape-libelle">Conseil {{ index + 1 }}</p>
+              <button type="button" class="btn-retirer" @click="supprimerConseil(index)">
+                Supprimer ce conseil
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label :for="`conseil-titre-${index}`">Titre</label>
+              <input
+                :id="`conseil-titre-${index}`"
+                v-model="conseil.titre"
+                type="text"
+                placeholder="Ex : Conservation"
+              />
+            </div>
+            <div class="form-group">
+              <label :for="`conseil-texte-${index}`">Texte</label>
+              <textarea
+                :id="`conseil-texte-${index}`"
+                v-model="conseil.texte"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+
+          <button type="button" class="btn-ajouter" @click="ajouterConseil">
+            Ajouter un conseil
+          </button>
+        </fieldset>
+
         <p v-if="erreur" role="alert" class="message-erreur">{{ erreur }}</p>
 
         <p class="form-obligatoire"><span aria-hidden="true">*</span> Champs obligatoires</p>
@@ -571,6 +651,11 @@ watch(
   font-size: 15px;
   font-style: italic;
   color: #8a3d14;
+}
+
+.aide-fieldset {
+  display: block;
+  margin: 0 0 16px;
 }
 
 .form-row {

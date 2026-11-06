@@ -53,6 +53,12 @@ const router = createRouter({
       component: () => import('../views/AddRecipeView.vue'),
       meta: { requiresAuth: true },
     },
+    {
+      path: '/favoris',
+      name: 'favoris',
+      component: () => import('../views/FavorisView.vue'),
+      meta: { requiresAuth: true },
+    },
   ],
 })
 

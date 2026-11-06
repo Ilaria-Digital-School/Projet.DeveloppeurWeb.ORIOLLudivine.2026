@@ -3,10 +3,12 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import api from '../services/api'
 import { useAuthStore } from '../stores/auth'
+import { useFavorisStore } from '../stores/favoris'
 
 const route = useRoute()
 const router = useRouter()
 const auth = useAuthStore()
+const favorisStore = useFavorisStore()
 
 const recette = ref(null)
 const chargement = ref(true)
@@ -16,9 +18,14 @@ onMounted(async () => {
   try {
     const reponse = await api.get(`/recettes/${route.params.id}`)
     recette.value = reponse.data
+    chargerCommentaires()
+    chargerFavoris()
   } catch (err) {
     console.error(err)
-    erreur.value = "Impossible de charger cette recette."
+    erreur.value =
+      err.response?.status === 404
+        ? "Cette recette n'existe pas."
+        : 'Impossible de charger la recette. Veuillez réessayer.'
   } finally {
     chargement.value = false
   }
@@ -82,6 +89,136 @@ async function supprimer() {
     suppressionEnCours.value = false
   }
 }
+
+// --- Favoris ---
+
+const favoriEnCours = ref(false)
+const erreurFavori = ref(null)
+
+// Le favori correspondant à cette recette (ou null si elle n'est pas en favori)
+const favori = computed(() =>
+  recette.value ? favorisStore.trouver(recette.value.id_recette) : null,
+)
+const enFavori = computed(() => favori.value !== null)
+
+async function chargerFavoris() {
+  if (!auth.estConnecte) return
+  try {
+    await favorisStore.charger()
+  } catch (err) {
+    // Pas bloquant : la page reste utilisable sans l'état du bouton cœur
+    console.error(err)
+  }
+}
+
+async function basculerFavori() {
+  erreurFavori.value = null
+  favoriEnCours.value = true
+  try {
+    if (favori.value) {
+      await favorisStore.retirer(favori.value.id_favori)
+    } else {
+      await favorisStore.ajouter(recette.value.id_recette)
+    }
+  } catch (err) {
+    console.error(err)
+    erreurFavori.value =
+      err.response?.data?.erreur ?? 'Impossible de modifier vos favoris. Veuillez réessayer.'
+  } finally {
+    favoriEnCours.value = false
+  }
+}
+
+// --- Commentaires ---
+
+const commentaires = ref([])
+const chargementCommentaires = ref(true)
+const erreurCommentaires = ref(null)
+const nouveauCommentaire = ref('')
+const envoiCommentaire = ref(false)
+const erreurEnvoi = ref(null)
+const erreurSuppressionCommentaire = ref(null)
+
+// Les plus récents d'abord (à date égale, le dernier ajouté passe en premier)
+const commentairesTries = computed(() =>
+  [...commentaires.value].sort(
+    (a, b) =>
+      new Date(b.date_publication) - new Date(a.date_publication) ||
+      b.id_commentaire - a.id_commentaire,
+  ),
+)
+
+// L'API renvoie la date sous forme de texte : on la rend lisible (ex. 6 novembre 2026)
+function formatDate(valeur) {
+  const date = new Date(valeur)
+  if (isNaN(date)) return valeur
+  return date.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
+async function chargerCommentaires(afficherChargement = true) {
+  if (afficherChargement) chargementCommentaires.value = true
+  erreurCommentaires.value = null
+  try {
+    const reponse = await api.get(`/recettes/${route.params.id}/commentaires`)
+    commentaires.value = reponse.data
+  } catch (err) {
+    console.error(err)
+    erreurCommentaires.value = 'Impossible de charger les commentaires.'
+  } finally {
+    chargementCommentaires.value = false
+  }
+}
+
+async function ajouterCommentaire() {
+  const contenu = nouveauCommentaire.value.trim()
+  if (contenu === '') return
+
+  erreurEnvoi.value = null
+  envoiCommentaire.value = true
+  try {
+    await api.post('/commentaires', { contenu, id_recette: recette.value.id_recette })
+    nouveauCommentaire.value = ''
+    // On recharge la liste : l'API ne renvoie que l'identifiant du nouveau commentaire
+    await chargerCommentaires(false)
+  } catch (err) {
+    console.error(err)
+    erreurEnvoi.value =
+      err.response?.data?.erreur ?? "Impossible d'ajouter le commentaire. Veuillez réessayer."
+  } finally {
+    envoiCommentaire.value = false
+  }
+}
+
+// Le bouton Supprimer n'apparaît que pour l'auteur du commentaire ou un administrateur
+// (la vraie protection reste celle de l'API)
+function peutSupprimerCommentaire(commentaire) {
+  if (!auth.estConnecte || !auth.utilisateur) return false
+  return (
+    auth.utilisateur.role === 'administrateur' ||
+    auth.utilisateur.id_utilisateur === commentaire.id_utilisateur
+  )
+}
+
+async function supprimerCommentaire(commentaire) {
+  if (!window.confirm('Supprimer ce commentaire ?')) return
+
+  erreurSuppressionCommentaire.value = null
+  try {
+    await api.delete(`/commentaires/${commentaire.id_commentaire}`)
+    commentaires.value = commentaires.value.filter(
+      (c) => c.id_commentaire !== commentaire.id_commentaire,
+    )
+  } catch (err) {
+    console.error(err)
+    erreurSuppressionCommentaire.value =
+      err.response?.data?.erreur ?? 'Impossible de supprimer le commentaire. Veuillez réessayer.'
+  }
+}
 </script>
 
 <template>
@@ -102,6 +239,21 @@ async function supprimer() {
           <span class="meta-badge" v-if="recette.temps_repos > 0">
             Repos : {{ formatDuree(recette.temps_repos) }}  
           </span>
+        </div>
+
+        <div v-if="auth.estConnecte" class="detail-favori">
+          <button
+            type="button"
+            class="btn-favori"
+            :class="{ actif: enFavori }"
+            :aria-pressed="enFavori"
+            :disabled="favoriEnCours"
+            @click="basculerFavori"
+          >
+            <span aria-hidden="true">{{ enFavori ? '♥' : '♡' }}</span>
+            {{ enFavori ? 'Retirer des favoris' : 'Ajouter aux favoris' }}
+          </button>
+          <p v-if="erreurFavori" role="alert" class="erreur-commentaire">{{ erreurFavori }}</p>
         </div>
       </div>
 
@@ -168,6 +320,65 @@ async function supprimer() {
           {{ erreurSuppression }}
         </p>
       </div>
+
+      <section class="commentaires" aria-labelledby="titre-commentaires">
+        <h2 id="titre-commentaires">Commentaires ({{ commentaires.length }})</h2>
+
+        <form
+          v-if="auth.estConnecte"
+          class="commentaire-form"
+          @submit.prevent="ajouterCommentaire"
+        >
+          <label for="nouveau-commentaire">Votre commentaire</label>
+          <textarea
+            id="nouveau-commentaire"
+            v-model="nouveauCommentaire"
+            rows="3"
+            maxlength="1000"
+            required
+            placeholder="Partagez votre avis, une astuce, une variante…"
+          ></textarea>
+          <button type="submit" class="btn-commenter" :disabled="envoiCommentaire">
+            {{ envoiCommentaire ? 'Envoi en cours…' : 'Publier le commentaire' }}
+          </button>
+          <p v-if="erreurEnvoi" role="alert" class="erreur-commentaire">{{ erreurEnvoi }}</p>
+        </form>
+        <p v-else class="commentaires-invitation">
+          <RouterLink to="/connexion">Connectez-vous</RouterLink> pour laisser un commentaire.
+        </p>
+
+        <p v-if="chargementCommentaires" class="aucun-commentaire">
+          Chargement des commentaires…
+        </p>
+        <p v-else-if="erreurCommentaires" role="alert" class="erreur-commentaire">
+          {{ erreurCommentaires }}
+        </p>
+        <p v-else-if="commentairesTries.length === 0" class="aucun-commentaire">
+          Aucun commentaire pour l'instant.
+        </p>
+
+        <ul v-else class="liste-commentaires">
+          <li v-for="c in commentairesTries" :key="c.id_commentaire" class="commentaire-item">
+            <div class="commentaire-entete">
+              <span class="commentaire-auteur">{{ c.auteur }}</span>
+              <span class="commentaire-date">{{ formatDate(c.date_publication) }}</span>
+            </div>
+            <p class="commentaire-texte">{{ c.contenu }}</p>
+            <button
+              v-if="peutSupprimerCommentaire(c)"
+              type="button"
+              class="btn-retirer-commentaire"
+              @click="supprimerCommentaire(c)"
+            >
+              Supprimer
+            </button>
+          </li>
+        </ul>
+
+        <p v-if="erreurSuppressionCommentaire" role="alert" class="erreur-commentaire">
+          {{ erreurSuppressionCommentaire }}
+        </p>
+      </section>
     </section>
   </main>
 </template>
@@ -416,6 +627,207 @@ async function supprimer() {
 
 .erreur-suppression {
   margin-top: 12px;
+  color: #b84f32;
+  font-style: italic;
+}
+
+/* ===== FAVORIS ===== */
+.detail-favori {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-favori {
+  padding: 8px 22px;
+  background: transparent;
+  border: 1px solid #b84f32;
+  border-radius: 999px;
+  color: #b84f32;
+  font-family: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-favori:hover:not(:disabled) {
+  background: #e8d5c0;
+}
+
+.btn-favori.actif {
+  background: #b84f32;
+  color: #fdfaf6;
+}
+
+.btn-favori.actif:hover:not(:disabled) {
+  background: #9c3f26;
+  border-color: #9c3f26;
+}
+
+.btn-favori:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-favori:focus-visible {
+  outline: 3px solid rgba(184, 79, 50, 0.35);
+  outline-offset: 2px;
+}
+
+/* ===== COMMENTAIRES ===== */
+.commentaires {
+  max-width: 700px;
+  margin: 60px auto 0;
+}
+
+.commentaires h2 {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-style: italic;
+  font-weight: 300;
+  color: #31190c;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8d5c0;
+}
+
+.commentaire-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.commentaire-form label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #31190c;
+}
+
+.commentaire-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 90px;
+  padding: 10px 12px;
+  border: 1px solid #e8d5c0;
+  border-radius: 8px;
+  background: #ffffff;
+  font: inherit;
+  font-size: 17px;
+  color: #31190c;
+  resize: vertical;
+}
+
+.commentaire-form textarea:focus-visible {
+  outline: none;
+  border-color: #b84f32;
+  box-shadow: 0 0 0 3px rgba(184, 79, 50, 0.2);
+}
+
+.btn-commenter {
+  align-self: flex-start;
+  padding: 10px 24px;
+  background: #b84f32;
+  border: 1px solid #b84f32;
+  border-radius: 8px;
+  color: #fdfaf6;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-commenter:hover:not(:disabled) {
+  background: #9c3f26;
+  border-color: #9c3f26;
+}
+
+.btn-commenter:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-commenter:focus-visible,
+.btn-retirer-commentaire:focus-visible {
+  outline: 3px solid rgba(184, 79, 50, 0.35);
+  outline-offset: 2px;
+}
+
+.commentaires-invitation,
+.aucun-commentaire {
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #8a3d14;
+}
+
+.commentaires-invitation a {
+  color: #b84f32;
+}
+
+.liste-commentaires {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.commentaire-item {
+  padding: 16px;
+  background: #fdfaf6;
+  border: 1px solid #e8d5c0;
+  border-radius: 10px;
+}
+
+.commentaire-entete {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.commentaire-auteur {
+  font-size: 17px;
+  font-weight: 600;
+  color: #31190c;
+}
+
+.commentaire-date {
+  font-size: 15px;
+  font-style: italic;
+  color: #7a4f28;
+}
+
+.commentaire-texte {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #8a3d14;
+  white-space: pre-line;
+}
+
+.btn-retirer-commentaire {
+  margin-top: 10px;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #b84f32;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-retirer-commentaire:hover {
+  border-color: #b84f32;
+}
+
+.erreur-commentaire {
+  margin: 0;
   color: #b84f32;
   font-style: italic;
 }
