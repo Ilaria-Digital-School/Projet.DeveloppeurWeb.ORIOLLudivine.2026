@@ -13,7 +13,12 @@ load_dotenv()
 app = Flask(__name__)
 from flask_cors import CORS
 
-CORS(app, origins=["http://localhost:5173"])
+# Adresses du site Vue autorisées à appeler l'API 
+origines = [
+    o.strip()
+    for o in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
+]
+CORS(app, origins=origines)
 
 # --- Configuration MySQL ---
 app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST")
@@ -207,7 +212,7 @@ def detail_recette(id_recette):
 def creer_recette():
     """Crée une recette complète en une seule requête : infos principales,
     et éventuellement ses groupes d'ingrédients + ingrédients, et ses étapes.
-
+ 
     Format JSON attendu (les clés "ingredients" et "etapes" sont optionnelles) :
     {
         "slug": "...", "titre": "...", "temps_preparation": 30, "portions": 6,
@@ -223,8 +228,10 @@ def creer_recette():
         ]
     }
     """
-    data = request.get_json()
-
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"erreur": "Le corps de la requête doit être un objet JSON"}), 400
+ 
     champs_requis = [
         "slug",
         "titre",
@@ -236,13 +243,13 @@ def creer_recette():
     for champ in champs_requis:
         if champ not in data:
             return jsonify({"erreur": f"Le champ '{champ}' est obligatoire"}), 400
-
+ 
     # L'auteur de la recette est l'utilisateur connecté (token), jamais une
     # valeur envoyée dans le body.
     id_utilisateur = g.utilisateur_courant["id_utilisateur"]
-
+ 
     cur = get_db().cursor()
-
+ 
     # 1. La recette principale
     cur.execute(
         """
@@ -269,7 +276,7 @@ def creer_recette():
         ),
     )
     id_recette = cur.lastrowid
-
+ 
     # 2. Groupes d'ingrédients + ingrédients (optionnel)
     for ordre_groupe, groupe in enumerate(data.get("ingredients", []), start=1):
         cur.execute(
@@ -280,7 +287,7 @@ def creer_recette():
             (groupe["groupe"], ordre_groupe, id_recette),
         )
         id_groupe = cur.lastrowid
-
+ 
         for ordre_item, item in enumerate(groupe.get("items", []), start=1):
             cur.execute(
                 """
@@ -295,7 +302,7 @@ def creer_recette():
                     id_groupe,
                 ),
             )
-
+ 
     # 3. Étapes (optionnel)
     for etape in data.get("etapes", []):
         cur.execute(
@@ -305,22 +312,34 @@ def creer_recette():
         """,
             (etape["numero"], etape["titre"], etape["description"], id_recette),
         )
-
+ 
     get_db().commit()
     cur.close()
-
+ 
     return jsonify({"message": "Recette créée", "id_recette": id_recette}), 201
-
-
+ 
+ 
 @app.route("/recettes/<int:id_recette>", methods=["PUT"])
 @token_required
 def modifier_recette(id_recette):
-    data = request.get_json()
+    """Modifie une recette.
+
+    - Les champs facultatifs absents du body (description, temps_cuisson,
+      temps_repos, image, conseils, statut) gardent leur valeur actuelle.
+    - Si la clé "ingredients" est envoyée, la liste actuelle des groupes
+      d'ingrédients est entièrement remplacée par la nouvelle.
+    - Si la clé "etapes" est envoyée, la liste actuelle des étapes est
+      entièrement remplacée par la nouvelle.
+    Le format de "ingredients" et "etapes" est le même que pour POST /recettes.
+    """
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"erreur": "Le corps de la requête doit être un objet JSON"}), 400
 
     cur = get_db().cursor(pymysql.cursors.DictCursor)
 
-    # On vérifie d'abord que la recette existe
-    cur.execute("SELECT id_utilisateur FROM Recette WHERE id_recette = %s", (id_recette,))
+    # On vérifie d'abord que la recette existe (et on garde ses valeurs actuelles)
+    cur.execute("SELECT * FROM Recette WHERE id_recette = %s", (id_recette,))
     recette = cur.fetchone()
     if not recette:
         cur.close()
@@ -350,6 +369,11 @@ def modifier_recette(id_recette):
             cur.close()
             return jsonify({"erreur": f"Le champ '{champ}' est obligatoire"}), 400
 
+    def valeur(champ):
+        """Valeur envoyée si la clé est présente, sinon valeur actuelle en base."""
+        return data[champ] if champ in data else recette[champ]
+
+    # 1. La recette principale
     cur.execute(
         """
         UPDATE Recette
@@ -361,19 +385,73 @@ def modifier_recette(id_recette):
         (
             data["slug"],
             data["titre"],
-            data.get("description"),
+            valeur("description"),
             data["temps_preparation"],
-            data.get("temps_cuisson"),
-            data.get("temps_repos"),
+            valeur("temps_cuisson"),
+            valeur("temps_repos"),
             data["portions"],
             data["difficulte"],
-            data.get("image"),
-            data.get("conseils"),
-            data.get("statut", "brouillon"),
+            valeur("image"),
+            valeur("conseils"),
+            valeur("statut"),
             data["id_categorie"],
             id_recette,
         ),
     )
+
+    # 2. Ingrédients : on supprime les anciens (enfants d'abord, puis parents),
+    #    puis on réinsère la nouvelle liste
+    if "ingredients" in data:
+        cur.execute(
+            """
+            DELETE i FROM Ingredient i
+            JOIN IngredientGroupe ig ON i.id_ingredient_groupe = ig.id_ingredient_groupe
+            WHERE ig.id_recette = %s
+        """,
+            (id_recette,),
+        )
+        cur.execute("DELETE FROM IngredientGroupe WHERE id_recette = %s", (id_recette,))
+
+        for ordre_groupe, groupe in enumerate(data["ingredients"], start=1):
+            cur.execute(
+                """
+                INSERT INTO IngredientGroupe (nom_groupe, ordre, id_recette)
+                VALUES (%s, %s, %s)
+            """,
+                (groupe["groupe"], ordre_groupe, id_recette),
+            )
+            id_groupe = cur.lastrowid
+
+            for ordre_item, item in enumerate(groupe.get("items", []), start=1):
+                cur.execute(
+                    """
+                    INSERT INTO Ingredient (nom, quantite, unite, ordre, id_ingredient_groupe)
+                    VALUES (%s, %s, %s, %s, %s)
+                """,
+                    (
+                        item["nom"],
+                        item.get("quantite") or 0,
+                        item.get("unite"),
+                        ordre_item,
+                        id_groupe,
+                    ),
+                )
+
+    # 3. Étapes : même principe
+    if "etapes" in data:
+        cur.execute("DELETE FROM Etape WHERE id_recette = %s", (id_recette,))
+
+        for etape in data["etapes"]:
+            cur.execute(
+                """
+                INSERT INTO Etape (ordre, titre, description, id_recette)
+                VALUES (%s, %s, %s, %s)
+            """,
+                (etape["numero"], etape["titre"], etape["description"], id_recette),
+            )
+
+    # Tout est validé d'un seul coup : si une erreur survient avant ce commit,
+    # rien n'est enregistré (la recette reste intacte).
     get_db().commit()
     cur.close()
 
@@ -384,28 +462,30 @@ def modifier_recette(id_recette):
 @token_required
 def supprimer_recette(id_recette):
     cur = get_db().cursor(pymysql.cursors.DictCursor)
-
-    cur.execute("SELECT id_utilisateur FROM Recette WHERE id_recette = %s", (id_recette,))
+ 
+    cur.execute(
+        "SELECT id_utilisateur FROM Recette WHERE id_recette = %s", (id_recette,)
+    )
     recette = cur.fetchone()
     if not recette:
         cur.close()
         return jsonify({"erreur": "Recette introuvable"}), 404
-
+ 
     utilisateur_courant = g.utilisateur_courant
     est_auteur = recette["id_utilisateur"] == utilisateur_courant["id_utilisateur"]
     est_admin = utilisateur_courant["role"] == "administrateur"
-
+ 
     if not est_auteur and not est_admin:
         cur.close()
         return (
             jsonify({"erreur": "Vous ne pouvez supprimer que vos propres recettes"}),
             403,
         )
-
+ 
     # Il n'y a pas de suppression en cascade automatique en base,
     # donc on supprime nous-mêmes les données liées, dans le bon ordre :
     # d'abord les "enfants", puis le "parent".
-
+ 
     # 1. Ingrédients (via les groupes de cette recette)
     cur.execute(
         """
@@ -415,25 +495,25 @@ def supprimer_recette(id_recette):
     """,
         (id_recette,),
     )
-
+ 
     # 2. Groupes d'ingrédients
     cur.execute("DELETE FROM IngredientGroupe WHERE id_recette = %s", (id_recette,))
-
+ 
     # 3. Étapes
     cur.execute("DELETE FROM Etape WHERE id_recette = %s", (id_recette,))
-
+ 
     # 4. Commentaires et favoris liés à cette recette
     cur.execute("DELETE FROM Commentaire WHERE id_recette = %s", (id_recette,))
     cur.execute("DELETE FROM Favoris WHERE id_recette = %s", (id_recette,))
-
+ 
     # 5. La recette elle-même
     cur.execute("DELETE FROM Recette WHERE id_recette = %s", (id_recette,))
-
+ 
     get_db().commit()
     cur.close()
-
+ 
     return jsonify({"message": "Recette supprimée"}), 200
-
+ 
 
 # =========================================================
 # CATEGORIES
@@ -452,7 +532,9 @@ def liste_categories():
 @app.route("/categories", methods=["POST"])
 @admin_required
 def creer_categorie():
-    data = request.get_json()
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"erreur": "Le corps de la requête doit être un objet JSON"}), 400
 
     champs_requis = ["slug", "label"]
     for champ in champs_requis:
@@ -489,7 +571,9 @@ def creer_categorie():
 
 @app.route("/inscription", methods=["POST"])
 def inscription():
-    data = request.get_json()
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"erreur": "Le corps de la requête doit être un objet JSON"}), 400
 
     champs_requis = ["nom", "email", "mot_passe"]
     for champ in champs_requis:
@@ -527,7 +611,9 @@ def inscription():
 
 @app.route("/connexion", methods=["POST"])
 def connexion():
-    data = request.get_json()
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"erreur": "Le corps de la requête doit être un objet JSON"}), 400
 
     if "email" not in data or "mot_passe" not in data:
         return jsonify({"erreur": "Email et mot de passe requis"}), 400
@@ -599,10 +685,17 @@ def liste_commentaires(id_recette):
 @app.route("/commentaires", methods=["POST"])
 @token_required
 def ajouter_commentaire():
-    data = request.get_json()
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"erreur": "Le corps de la requête doit être un objet JSON"}), 400
 
     if "contenu" not in data or "id_recette" not in data:
-        return jsonify({"erreur": "Le champ 'contenu' et 'id_recette' sont obligatoires"}), 400
+        return (
+            jsonify(
+                {"erreur": "Le champ 'contenu' et 'id_recette' sont obligatoires"}
+            ),
+            400,
+        )
 
     # On ne fait plus confiance à un éventuel "id_utilisateur" envoyé dans le
     # body : on prend l'identité authentifiée par le jeton JWT, pour qu'on
@@ -661,7 +754,9 @@ def supprimer_commentaire(id_commentaire):
     if not est_auteur and not est_admin:
         cur.close()
         return (
-            jsonify({"erreur": "Vous ne pouvez supprimer que vos propres commentaires"}),
+            jsonify(
+                {"erreur": "Vous ne pouvez supprimer que vos propres commentaires"}
+            ),
             403,
         )
 
@@ -710,7 +805,9 @@ def liste_favoris(id_utilisateur):
 @app.route("/favoris", methods=["POST"])
 @token_required
 def ajouter_favori():
-    data = request.get_json()
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"erreur": "Le corps de la requête doit être un objet JSON"}), 400
 
     if "id_recette" not in data:
         return jsonify({"erreur": "Le champ 'id_recette' est obligatoire"}), 400
@@ -756,7 +853,9 @@ def ajouter_favori():
 def supprimer_favori(id_favori):
     cur = get_db().cursor(pymysql.cursors.DictCursor)
 
-    cur.execute("SELECT id_utilisateur FROM Favoris WHERE id_favori = %s", (id_favori,))
+    cur.execute(
+        "SELECT id_utilisateur FROM Favoris WHERE id_favori = %s", (id_favori,)
+    )
     favori = cur.fetchone()
 
     if not favori:
@@ -764,7 +863,9 @@ def supprimer_favori(id_favori):
         return jsonify({"erreur": "Favori introuvable"}), 404
 
     utilisateur_courant = g.utilisateur_courant
-    est_proprietaire = favori["id_utilisateur"] == utilisateur_courant["id_utilisateur"]
+    est_proprietaire = (
+        favori["id_utilisateur"] == utilisateur_courant["id_utilisateur"]
+    )
 
     if not est_proprietaire:
         cur.close()
