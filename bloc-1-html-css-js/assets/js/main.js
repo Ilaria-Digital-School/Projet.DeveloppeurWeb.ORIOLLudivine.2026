@@ -96,3 +96,37 @@ function getCategorieDepuisURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get("categorie"); // ex: "cremes-curds-ganache" ou null
 }
+
+// ACCESSIBILITÉ — Activation de la police OpenDyslexic
+// Le choix est enregistré dans le navigateur (localStorage)
+// pour être conservé d'une page à l'autre.
+const boutonDys = document.getElementById("bouton-dys");
+
+// Applique (ou retire) la police et met à jour le bouton
+function appliquerPoliceDys(active) {
+  document.documentElement.classList.toggle("police-dys", active);
+  if (boutonDys) {
+    boutonDys.setAttribute("aria-pressed", String(active));
+  }
+}
+
+// Au chargement : on relit le choix enregistré.
+// try/catch : si le navigateur bloque le stockage, le site continue de marcher.
+try {
+  appliquerPoliceDys(localStorage.getItem("policeDys") === "oui");
+} catch (erreur) {
+  appliquerPoliceDys(false);
+}
+
+// Au clic : on inverse l'état et on l'enregistre
+if (boutonDys) {
+  boutonDys.addEventListener("click", function () {
+    const active = !document.documentElement.classList.contains("police-dys");
+    appliquerPoliceDys(active);
+    try {
+      localStorage.setItem("policeDys", active ? "oui" : "non");
+    } catch (erreur) {
+      // stockage impossible : la police reste active pour cette page seulement
+    }
+  });
+}

@@ -8,6 +8,14 @@
       name="description"
       content="Pâtissons, le site collaboratif de recettes de pâtisseries. Partagez et découvrez les meilleures recettes !"
     />
+    <!-- Favicon : SVG pour les navigateurs récents, PNG en secours -->
+    <link
+      rel="icon"
+      href="../assets/images/favicon-32.png"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml" />
 
     <!-- Polices Google Fonts -->
     <link
@@ -17,6 +25,14 @@
 
     <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <!-- Police dyslexie : appliquée avant l'affichage pour éviter un flash -->
+    <script>
+      try {
+        if (localStorage.getItem("policeDys") === "oui") {
+          document.documentElement.classList.add("police-dys");
+        }
+      } catch (erreur) {}
+    </script>
   </head>
 
   <body>
@@ -56,6 +72,14 @@
         <a href="favoris.html" aria-label="Voir les recettes favorites"
           >Favoris</a
         >
+        <button
+          type="button"
+          class="bouton-dys"
+          id="bouton-dys"
+          aria-pressed="false"
+        >
+          Police dyslexie
+        </button>
       </nav>
     </header>
 

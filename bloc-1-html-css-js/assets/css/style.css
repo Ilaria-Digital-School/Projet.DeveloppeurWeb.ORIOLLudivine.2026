@@ -1296,3 +1296,49 @@ nav[aria-label="Fil d'ariane"] ol li[aria-current="page"] {
     padding: 0;
   }
 }
+
+/* ==========================================================
+   ACCESSIBILITÉ — Police OpenDyslexic (option activable)
+   Licence SIL OFL : voir assets/fonts/OFL.txt
+   ========================================================== */
+
+/* Déclaration de la police (fichiers hébergés sur le site) */
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("../fonts/OpenDyslexic-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* le texte reste lisible pendant le chargement */
+}
+
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("../fonts/OpenDyslexic-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Quand l'option est activée, la classe "police-dys" est ajoutée sur <html>.
+   !important est volontaire : le choix de l'utilisateur doit passer
+   avant toutes les polices définies ailleurs dans le fichier. */
+html.police-dys,
+html.police-dys * {
+  font-family: "OpenDyslexic", Arial, sans-serif !important;
+}
+
+/* Bouton d'activation, présenté comme les liens du menu */
+.bouton-dys {
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+}
+
+.bouton-dys:focus-visible {
+  outline: 2px solid #b07a4a;
+  outline-offset: 2px;
+}
