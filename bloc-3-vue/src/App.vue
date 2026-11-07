@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref , watch } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from './stores/auth'
@@ -14,6 +14,33 @@ function seDeconnecter() {
 }
 
 const menuOuvert = ref(false)
+
+// ACCESSIBILITÉ — Police OpenDyslexic
+// On relit le choix enregistré (try/catch si le stockage est bloqué)
+function lirePreferenceDys() {
+  try {
+    return localStorage.getItem('policeDys') === 'oui'
+  } catch {
+    return false
+  }
+}
+
+const policeDys = ref(lirePreferenceDys())
+
+// À chaque changement de policeDys : on met à jour <html> et on enregistre.
+// immediate: true → s'exécute aussi au chargement de l'application.
+watch(
+  policeDys,
+  (active) => {
+    document.documentElement.classList.toggle('police-dys', active)
+    try {
+      localStorage.setItem('policeDys', active ? 'oui' : 'non')
+    } catch {
+      // stockage impossible : l'option reste active jusqu'au rechargement
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -39,6 +66,9 @@ const menuOuvert = ref(false)
         Déconnexion
       </button>
       <RouterLink to="/favoris" @click="menuOuvert = false">Favoris</RouterLink>
+      <button type="button" class="bouton-dys" :aria-pressed="policeDys" @click="policeDys = !policeDys">
+        Police dyslexie
+      </button>
     </nav>
   </header>
 
@@ -134,5 +164,20 @@ const menuOuvert = ref(false)
     gap: 15px;
     padding: 15px;
   }
+}
+
+.bouton-dys {
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  color: inherit;
+  font: inherit;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+}
+
+.bouton-dys:focus-visible {
+  outline: 2px solid var(--color-brun-moyen);
+  outline-offset: 2px;
 }
 </style>

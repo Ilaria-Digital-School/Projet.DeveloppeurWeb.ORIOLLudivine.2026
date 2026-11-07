@@ -31,3 +31,29 @@ body {
   color: var(--color-text);
   background-color: var(--color-background);
 }
+
+/* ==========================================================
+   ACCESSIBILITÉ — Police OpenDyslexic (option activable)
+   Licence SIL OFL : voir src/assets/fonts/OFL.txt
+   ========================================================== */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('./fonts/OpenDyslexic-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('./fonts/OpenDyslexic-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Global (et non scoped) : la règle doit toucher TOUS les composants */
+html.police-dys,
+html.police-dys * {
+  font-family: 'OpenDyslexic', Arial, sans-serif !important;
+}
