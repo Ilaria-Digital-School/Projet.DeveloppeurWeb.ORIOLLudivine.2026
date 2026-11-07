@@ -104,7 +104,13 @@
       </nav>
       <section class="connexion-section" aria-label="Formulaire d'inscription">
         <h1>Créer un compte</h1>
-        <form class="connexion-form" action="#" method="post" novalidate>
+        <form
+          class="connexion-form"
+          action="#"
+          method="post"
+          novalidate
+          data-valider
+        >
           <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
             <input
@@ -147,6 +153,7 @@
               name="password_confirm"
               placeholder="Répétez votre mot de passe"
               autocomplete="new-password"
+              data-confirmer="password"
               required
             />
           </div>
@@ -174,5 +181,6 @@
     </footer>
 
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/validation.js"></script>
   </body>
 </html>

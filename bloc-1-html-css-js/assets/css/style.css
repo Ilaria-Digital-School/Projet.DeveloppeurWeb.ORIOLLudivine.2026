@@ -1342,3 +1342,27 @@ html.police-dys * {
   outline: 2px solid #b07a4a;
   outline-offset: 2px;
 }
+
+/* ==========================================================
+   VALIDATION DES FORMULAIRES
+   Contrastes vérifiés : rouge #9b1c13 = 7,86:1 et vert #1f5a24 = 7,93:1
+   sur le fond du formulaire (#fdfaf6), au-dessus du seuil WCAG AA de 4,5:1
+   ========================================================== */
+.message-erreur {
+  color: #9b1c13;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+  min-height: 1.2em; /* évite que le formulaire « saute » quand le message apparaît */
+}
+
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color: #9b1c13;
+  border-width: 2px;
+}
+
+.message-succes {
+  color: #1f5a24;
+  font-weight: bold;
+}
