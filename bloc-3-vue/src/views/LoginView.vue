@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive, computed } from 'vue'
+import { erreurEmail, erreurObligatoire } from '../utils/validation'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 
@@ -11,8 +12,35 @@ const motPasse = ref('')
 const erreur = ref(null)
 const envoiEnCours = ref(false)
 
+// Même principe que l'inscription. Pas de longueur minimale ici :
+// on vérifie seulement que le mot de passe est rempli.
+const touche = reactive({ email: false, motPasse: false })
+
+const erreurs = computed(() => ({
+  email: erreurEmail(email.value),
+  motPasse: erreurObligatoire(motPasse.value),
+}))
+
+const formulaireValide = computed(() =>
+  Object.values(erreurs.value).every((message) => message === ''),
+)
+
+function message(champ) {
+  return touche[champ] ? erreurs.value[champ] : ''
+}
+
+const idsChamps = { email: 'email', motPasse: 'password' }
+
 async function seConnecter() {
   erreur.value = null
+
+  Object.keys(touche).forEach((champ) => (touche[champ] = true))
+  if (!formulaireValide.value) {
+    const premier = Object.keys(erreurs.value).find((champ) => erreurs.value[champ] !== '')
+    document.getElementById(idsChamps[premier])?.focus()
+    return
+  }
+
   envoiEnCours.value = true
   try {
     await auth.connexion(email.value, motPasse.value)
@@ -48,7 +76,13 @@ async function seConnecter() {
             placeholder="Entrez votre adresse e-mail"
             autocomplete="email"
             required
+            :aria-invalid="message('email') ? 'true' : 'false'"
+            aria-describedby="email-erreur"
+            @blur="touche.email = true"
           />
+          <p id="email-erreur" class="message-erreur">
+            {{ message('email') ? '⚠ ' + message('email') : '' }}
+          </p>
         </div>
 
         <div class="form-group">
@@ -60,7 +94,13 @@ async function seConnecter() {
             placeholder="Entrez votre mot de passe"
             autocomplete="current-password"
             required
+            :aria-invalid="message('motPasse') ? 'true' : 'false'"
+            aria-describedby="password-erreur"
+            @blur="touche.motPasse = true"
           />
+          <p id="password-erreur" class="message-erreur">
+            {{ message('motPasse') ? '⚠ ' + message('motPasse') : '' }}
+          </p>
         </div>
 
         <p v-if="erreur" class="erreur-connexion" role="alert">{{ erreur }}</p>
@@ -218,5 +258,16 @@ async function seConnecter() {
   color: #b84f32;
   text-align: center;
   margin: 0;
+}
+/* Validation : contraste #9b1c13 sur #fdfaf6 = 7,86:1 (WCAG AA ≥ 4,5:1) */
+.message-erreur {
+  color: #9b1c13;
+  font-size: 13px;
+  margin: 4px 0 0;
+  min-height: 1.2em; /* évite que le formulaire « saute » */
+}
+
+.connexion-form input[aria-invalid='true'] {
+  border: 2px solid #9b1c13;
 }
 </style>

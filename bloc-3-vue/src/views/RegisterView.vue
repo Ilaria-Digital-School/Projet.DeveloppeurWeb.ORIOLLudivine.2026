@@ -1,7 +1,13 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import api from '../services/api'
+import {
+  erreurObligatoire,
+  erreurEmail,
+  erreurLongueur,
+  erreurConfirmation,
+} from '../utils/validation'
 
 const router = useRouter()
 
@@ -9,23 +15,51 @@ const nom = ref('')
 const email = ref('')
 const motPasse = ref('')
 const confirmation = ref('')
-const erreur = ref(null)
+const erreur = ref(null) // erreur renvoyée par l'API
 const envoiEnCours = ref(false)
+
+// Un champ est « touché » quand l'utilisateur l'a quitté une première fois :
+// on n'affiche pas d'erreur avant, pour ne pas le gêner pendant qu'il tape.
+const touche = reactive({ nom: false, email: false, motPasse: false, confirmation: false })
+
+// computed : recalculé automatiquement à chaque frappe (réactivité de Vue)
+const erreurs = computed(() => ({
+  nom: erreurObligatoire(nom.value),
+  email: erreurEmail(email.value),
+  motPasse: erreurLongueur(motPasse.value, 8),
+  confirmation: erreurConfirmation(confirmation.value, motPasse.value),
+}))
+
+const formulaireValide = computed(() =>
+  Object.values(erreurs.value).every((message) => message === ''),
+)
+
+// Message à afficher sous un champ (vide tant qu'il n'est pas touché)
+function message(champ) {
+  return touche[champ] ? erreurs.value[champ] : ''
+}
+
+// Correspondance entre le nom du champ et l'id de son <input>
+const idsChamps = { nom: 'nom', email: 'email', motPasse: 'password', confirmation: 'confirmation' }
 
 async function sInscrire() {
   erreur.value = null
 
-  // Vérification côté navigateur : les deux mots de passe doivent être identiques
-  if (motPasse.value !== confirmation.value) {
-    erreur.value = 'Les deux mots de passe ne sont pas identiques.'
-    return
+  // À l'envoi, on affiche toutes les erreurs d'un coup
+  Object.keys(touche).forEach((champ) => (touche[champ] = true))
+
+  if (!formulaireValide.value) {
+    // On place le curseur sur le premier champ invalide
+    const premier = Object.keys(erreurs.value).find((champ) => erreurs.value[champ] !== '')
+    document.getElementById(idsChamps[premier])?.focus()
+    return // rien n'est envoyé à l'API (Cr 2.b.3)
   }
 
   envoiEnCours.value = true
   try {
     await api.post('/inscription', {
-      nom: nom.value,
-      email: email.value,
+      nom: nom.value.trim(),
+      email: email.value.trim(),
       mot_passe: motPasse.value,
     })
     // Compte créé (réponse 201) : on envoie la personne se connecter
@@ -61,7 +95,13 @@ async function sInscrire() {
             placeholder="Entrez votre nom"
             autocomplete="name"
             required
+            :aria-invalid="message('nom') ? 'true' : 'false'"
+            aria-describedby="nom-erreur"
+            @blur="touche.nom = true"
           />
+          <p id="nom-erreur" class="message-erreur">
+            {{ message('nom') ? '⚠ ' + message('nom') : '' }}
+          </p>
         </div>
 
         <div class="form-group">
@@ -73,7 +113,13 @@ async function sInscrire() {
             placeholder="Entrez votre adresse e-mail"
             autocomplete="email"
             required
+            :aria-invalid="message('email') ? 'true' : 'false'"
+            aria-describedby="email-erreur"
+            @blur="touche.email = true"
           />
+          <p id="email-erreur" class="message-erreur">
+            {{ message('email') ? '⚠ ' + message('email') : '' }}
+          </p>
         </div>
 
         <div class="form-group">
@@ -82,10 +128,17 @@ async function sInscrire() {
             id="password"
             v-model="motPasse"
             type="password"
-            placeholder="Choisissez un mot de passe"
+            placeholder="Choisissez un mot de passe (8 caractères minimum)"
             autocomplete="new-password"
+            minlength="8"
             required
+            :aria-invalid="message('motPasse') ? 'true' : 'false'"
+            aria-describedby="password-erreur"
+            @blur="touche.motPasse = true"
           />
+          <p id="password-erreur" class="message-erreur">
+            {{ message('motPasse') ? '⚠ ' + message('motPasse') : '' }}
+          </p>
         </div>
 
         <div class="form-group">
@@ -97,7 +150,13 @@ async function sInscrire() {
             placeholder="Retapez votre mot de passe"
             autocomplete="new-password"
             required
+            :aria-invalid="message('confirmation') ? 'true' : 'false'"
+            aria-describedby="confirmation-erreur"
+            @blur="touche.confirmation = true"
           />
+          <p id="confirmation-erreur" class="message-erreur">
+            {{ message('confirmation') ? '⚠ ' + message('confirmation') : '' }}
+          </p>
         </div>
 
         <p v-if="erreur" class="erreur-connexion" role="alert">{{ erreur }}</p>
@@ -248,5 +307,16 @@ async function sInscrire() {
   color: #b84f32;
   text-align: center;
   margin: 0;
+}
+/* Validation : contraste #9b1c13 sur #fdfaf6 = 7,86:1 (WCAG AA ≥ 4,5:1) */
+.message-erreur {
+  color: #9b1c13;
+  font-size: 13px;
+  margin: 4px 0 0;
+  min-height: 1.2em; /* évite que le formulaire « saute » */
+}
+
+.connexion-form input[aria-invalid='true'] {
+  border: 2px solid #9b1c13;
 }
 </style>
